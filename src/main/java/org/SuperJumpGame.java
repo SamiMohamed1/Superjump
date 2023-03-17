@@ -18,6 +18,7 @@ public class SuperJumpGame extends YaegerGame {
     setSize(new Size(1200, 600));
     }
 
+
     @Override
     public void setupScenes() {
     addScene(0, new Startscherm(this));
