@@ -8,6 +8,7 @@ import com.github.hanyaeger.api.scenes.SceneBorder;
 import com.github.hanyaeger.api.userinput.KeyListener;
 import javafx.scene.input.KeyCode;
 import org.map.Grond;
+import org.map.Ijs;
 
 import java.util.Set;
 
@@ -61,11 +62,12 @@ public class Speler extends DynamicSpriteEntity implements KeyListener, Newtonia
     @Override
     public void onCollision(Collider collidingObject) {
         if (collidingObject instanceof Grond) {
-            System.out.println(getAnchorLocation());
-            System.out.println(getAnchorPoint());
-            System.out.println("---------------------------");
-//            nullifySpeedInDirection(Direction.DOWN);
-            setAnchorLocationY(513);
+            if(getAnchorLocation().getY() > 500) {
+                setAnchorLocationY(513);
+            }
+        } else if (collidingObject instanceof Ijs) {
+
+            setSpeed(getSpeed() +4);
         }
     }
 
