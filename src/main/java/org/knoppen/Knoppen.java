@@ -19,6 +19,7 @@ public class Knoppen extends TextEntity implements MouseButtonPressedListener, M
         setFill(Color.BLACK);
     }
 
+
     @Override
     public void onMouseButtonPressed(MouseButton mouseButton, Coordinate2D coordinate2D) {
         superJumpGame.setActiveScene(1);
