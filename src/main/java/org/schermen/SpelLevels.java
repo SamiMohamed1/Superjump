@@ -25,6 +25,7 @@ public class SpelLevels extends DynamicScene implements MouseButtonPressedListen
     @Override
     public void setupEntities() {
         Speler speler = new Speler(new Coordinate2D(getWidth()/2,getHeight()/2));
+
         addEntity(speler);
     }
 
