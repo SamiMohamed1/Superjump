@@ -11,12 +11,14 @@ import javafx.geometry.Side;
 import javafx.scene.input.KeyCode;
 import org.map.Grond;
 import org.map.Ijs;
+import org.map.Platform;
 import org.map.Steen;
 
 import java.util.Set;
 
 public class Speler extends DynamicSpriteEntity implements KeyListener, Newtonian, SceneBorderCrossingWatcher, SceneBorderTouchingWatcher, Collided {
     private int health = 10;
+    private int jumpCounter =2;
 
 
     public Speler(Coordinate2D Location) {
@@ -26,15 +28,21 @@ public class Speler extends DynamicSpriteEntity implements KeyListener, Newtonia
 
     @Override
     public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
-        if (pressedKeys.contains(KeyCode.LEFT)) {
-            setMotion(5, 270d);
-        } else if (pressedKeys.contains(KeyCode.RIGHT)) {
-            setMotion(5, 90d);
-        } else if (pressedKeys.contains(KeyCode.UP)) {
-            setMotion(10, 180d);
-        } else if (pressedKeys.contains(KeyCode.DOWN)) {
-            setMotion(5, 0d);
+        if(getSpeed() >= 15){
+            setSpeed(25);
         }
+        if (pressedKeys.contains(KeyCode.LEFT)) {
+            addToMotion(5, 270d);
+        } else if (pressedKeys.contains(KeyCode.RIGHT)) {
+            addToMotion(5, 90d);
+
+        } else if (pressedKeys.contains(KeyCode.UP) && jumpCounter> 0) {
+            addToMotion(15, 180d);
+            jumpCounter--;
+        } else if (pressedKeys.contains(KeyCode.DOWN)) {
+            addToMotion(5, 0d);
+        }
+        System.out.println(jumpCounter);
     }
 
 
@@ -65,34 +73,36 @@ public class Speler extends DynamicSpriteEntity implements KeyListener, Newtonia
 
     @Override
     public void onCollision(Collider collidingObject) {
-        if (collidingObject instanceof Grond) {
-            if (getAnchorLocation().getY() > 500) {
-                setAnchorLocationY(513);
+        if(collidingObject instanceof Platform) {
+            if (collidingObject instanceof Grond) {
+                if (getAnchorLocation().getY() > 500) {
+                    setAnchorLocationY(513);
+                    jumpCounter = 2;
+                }
+            } else if (collidingObject instanceof Ijs) {
+                if (getCollisionSide(collidingObject) == Side.TOP) {
+                    setAnchorLocationY(collidingObject.getBoundingBox().getMinY() - 52);
+                    setSpeed(getSpeed() + 0.1);
+                    setMotion(getSpeed(), getDirection());
+                    jumpCounter = 2;
+                }
+
+
+            } else if (collidingObject instanceof Steen) {
+                nullifySpeedInDirection(0d);
+                jumpCounter = 2;
             }
-        } else if (collidingObject instanceof Ijs) {
-//            switch (getCollisionSide(this)) {
-//                case (Si):
-//                    System.out.println(1111);
-//                    break;
-//            }
-
-            nullifySpeedInDirection(0d);
-            setSpeed(getSpeed() + 0.1);
-            setMotion(getSpeed(), getDirection());
-
-//            setAnchorLocationY(366);
-        } else if (collidingObject instanceof Steen) {
-            nullifySpeedInDirection(0d);
         }
     }
-    private Side getCollisionSide(Collided collided) {
-        Bounds collidedBoundingBox = collided.getBoundingBox();
-        Bounds colliderBoundingBox = this.getBoundingBox();
 
-        double collidedHalfWidth = collided.getWidth() / 2;
-        double collidedHalfHeight = collided.getHeight() / 2;
-        double colliderHalfWidth = this.getWidth() / 2;
-        double colliderHalfHeight = this.getHeight() / 2;
+    private Side getCollisionSide(Collider collider) {
+        Bounds collidedBoundingBox = this.getBoundingBox();
+        Bounds colliderBoundingBox = collider.getBoundingBox();
+
+        double collidedHalfWidth = this.getWidth() / 2;
+        double collidedHalfHeight = this.getHeight() / 2;
+        double colliderHalfWidth = collider.getWidth() / 2;
+        double colliderHalfHeight = collider.getHeight() / 2;
 
         double differenceX = colliderBoundingBox.getCenterX() - collidedBoundingBox.getCenterX();
         double differenceY = colliderBoundingBox.getCenterY() - collidedBoundingBox.getCenterY();
