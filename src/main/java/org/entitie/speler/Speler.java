@@ -9,26 +9,25 @@ import com.github.hanyaeger.api.userinput.KeyListener;
 import javafx.geometry.Bounds;
 import javafx.geometry.Side;
 import javafx.scene.input.KeyCode;
-import org.map.Grond;
-import org.map.Ijs;
-import org.map.Platform;
-import org.map.Steen;
+import org.map.*;
 
 import java.util.Set;
 
 public class Speler extends DynamicSpriteEntity implements KeyListener, Newtonian, SceneBorderCrossingWatcher, SceneBorderTouchingWatcher, Collided {
     private int health = 10;
-    private int jumpCounter =2;
+    private int springTeller = 20;
+    private float sterkte;
 
 
     public Speler(Coordinate2D Location) {
         super("afbeeldingen/testarcher1.png", Location, new Size(50, 50));
         setFrictionConstant(0.05);
+        setGravityConstant(0.25);
     }
 
     @Override
     public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
-        if(getSpeed() >= 15){
+        if (getSpeed() >= 15) {
             setSpeed(25);
         }
         if (pressedKeys.contains(KeyCode.LEFT)) {
@@ -36,13 +35,13 @@ public class Speler extends DynamicSpriteEntity implements KeyListener, Newtonia
         } else if (pressedKeys.contains(KeyCode.RIGHT)) {
             addToMotion(5, 90d);
 
-        } else if (pressedKeys.contains(KeyCode.UP) && jumpCounter> 0) {
+        } else if (pressedKeys.contains(KeyCode.UP) && springTeller > 0) {
             addToMotion(15, 180d);
-            jumpCounter--;
+            springTeller--;
         } else if (pressedKeys.contains(KeyCode.DOWN)) {
             addToMotion(5, 0d);
         }
-        System.out.println(jumpCounter);
+        System.out.println(springTeller);
     }
 
 
@@ -73,27 +72,72 @@ public class Speler extends DynamicSpriteEntity implements KeyListener, Newtonia
 
     @Override
     public void onCollision(Collider collidingObject) {
-        if(collidingObject instanceof Platform) {
+        if (collidingObject instanceof Platform) {
             if (collidingObject instanceof Grond) {
-                if (getAnchorLocation().getY() > 500) {
-                    setAnchorLocationY(513);
-                    jumpCounter = 2;
-                }
+                setAnchorLocationY(collidingObject.getBoundingBox().getMinY() - 50);
+                springTeller = 2;
             } else if (collidingObject instanceof Ijs) {
-                if (getCollisionSide(collidingObject) == Side.TOP) {
-                    setAnchorLocationY(collidingObject.getBoundingBox().getMinY() - 52);
-                    setSpeed(getSpeed() + 0.1);
-                    setMotion(getSpeed(), getDirection());
-                    jumpCounter = 2;
+                switch (getCollisionSide(collidingObject)) {
+                    case TOP:
+                        setAnchorLocationY(collidingObject.getBoundingBox().getMinY() - 50);
+                        setSpeed(getSpeed() + 0.1);
+                        setMotion(getSpeed(), getDirection());
+                        setAnchorLocationY(collidingObject.getBoundingBox().getMinY() - 50);
+                        springTeller = 2;
+                        break;
+                    case LEFT:
+                        nullifySpeedInDirection(90d);
+                        break;
+                    case RIGHT:
+                        nullifySpeedInDirection(270d);
+                        break;
+                    case BOTTOM:
+                        nullifySpeedInDirection(180d);
+                        springTeller = 0;
+                        break;
                 }
+            }
+        }
+        else if (collidingObject instanceof Steen) {
+            switch (getCollisionSide(collidingObject)) {
+                case TOP:
+                    setAnchorLocationY(collidingObject.getBoundingBox().getMinY() - 50);
+                    springTeller = 2;
+                    break;
+                case LEFT:
+                    nullifySpeedInDirection(90d);
+                    break;
+                case RIGHT:
+                    nullifySpeedInDirection(270d);
+                    break;
+                case BOTTOM:
+                    nullifySpeedInDirection(180d);
+                    springTeller = 0;
+                    break;
+            }
+        }
 
 
-            } else if (collidingObject instanceof Steen) {
-                nullifySpeedInDirection(0d);
-                jumpCounter = 2;
+        if (collidingObject instanceof BewegendPlatform) {
+            System.out.println(getCollisionSide(collidingObject));
+            switch (getCollisionSide(collidingObject)) {
+                case TOP:
+                    setAnchorLocationY(collidingObject.getBoundingBox().getMinY() - 50);
+                    break;
+                case LEFT:
+                    nullifySpeedInDirection(90d);
+                    break;
+                case RIGHT:
+                    nullifySpeedInDirection(270d);
+                    break;
+                case BOTTOM:
+                    nullifySpeedInDirection(180d);
+                    springTeller = 0;
+                    break;
             }
         }
     }
+
 
     private Side getCollisionSide(Collider collider) {
         Bounds collidedBoundingBox = this.getBoundingBox();
@@ -114,8 +158,8 @@ public class Speler extends DynamicSpriteEntity implements KeyListener, Newtonia
         double depthY = differenceY > 0 ? minYDistance - differenceY + 1 : -minYDistance - differenceY - 1;
 
         // Add or subtract 1 to make sure depth can't be 0 at first collision
-        depthX = depthX==0?differenceX>0?1:0:depthX;
-        depthY = depthY==0?differenceY>0?1:0:depthY;
+        depthX = depthX == 0 ? differenceX > 0 ? 1 : 0 : depthX;
+        depthY = depthY == 0 ? differenceY > 0 ? 1 : 0 : depthY;
 
         // depthY < doe TOP of BOTTOM
         // depthX > doe LEFT of RIGHT
@@ -132,8 +176,7 @@ public class Speler extends DynamicSpriteEntity implements KeyListener, Newtonia
                 return Side.TOP;
             }
             return Side.BOTTOM;
-        }
-        else {
+        } else {
             if (depthX > 0 && collidedBoundingBox.getMaxX() <= colliderBoundingBox.getCenterX()) {
                 return Side.LEFT;
             }
