@@ -9,10 +9,7 @@ import com.github.hanyaeger.api.userinput.KeyListener;
 import javafx.geometry.Bounds;
 import javafx.geometry.Side;
 import javafx.scene.input.KeyCode;
-import org.map.Grond;
-import org.map.Ijs;
-import org.map.Platform;
-import org.map.Steen;
+import org.map.*;
 
 import java.util.Set;
 
@@ -80,32 +77,67 @@ public class Speler extends DynamicSpriteEntity implements KeyListener, Newtonia
                 setAnchorLocationY(collidingObject.getBoundingBox().getMinY() - 50);
                 springTeller = 2;
             } else if (collidingObject instanceof Ijs) {
-                if (getCollisionSide(collidingObject) == Side.TOP) {
-                    setAnchorLocationY(collidingObject.getBoundingBox().getMinY() - 52);
-                    setSpeed(getSpeed() + 0.1);
-                    setMotion(getSpeed(), getDirection());
-                    springTeller = 2;
-                    System.out.println("ijs");
-                }
-            } else if (collidingObject instanceof Steen) {
-                springTeller = 2;
-                System.out.println(getCollisionSide(collidingObject));
                 switch (getCollisionSide(collidingObject)) {
                     case TOP:
                         setAnchorLocationY(collidingObject.getBoundingBox().getMinY() - 50);
+                        setSpeed(getSpeed() + 0.1);
+                        setMotion(getSpeed(), getDirection());
+                        setAnchorLocationY(collidingObject.getBoundingBox().getMinY() - 50);
+                        springTeller = 2;
                         break;
                     case LEFT:
                         nullifySpeedInDirection(90d);
                         break;
                     case RIGHT:
                         nullifySpeedInDirection(270d);
+                        break;
                     case BOTTOM:
                         nullifySpeedInDirection(180d);
                         springTeller = 0;
+                        break;
                 }
             }
         }
+        else if (collidingObject instanceof Steen) {
+            switch (getCollisionSide(collidingObject)) {
+                case TOP:
+                    setAnchorLocationY(collidingObject.getBoundingBox().getMinY() - 50);
+                    springTeller = 2;
+                    break;
+                case LEFT:
+                    nullifySpeedInDirection(90d);
+                    break;
+                case RIGHT:
+                    nullifySpeedInDirection(270d);
+                    break;
+                case BOTTOM:
+                    nullifySpeedInDirection(180d);
+                    springTeller = 0;
+                    break;
+            }
+        }
+
+
+        if (collidingObject instanceof BewegendPlatform) {
+            System.out.println(getCollisionSide(collidingObject));
+            switch (getCollisionSide(collidingObject)) {
+                case TOP:
+                    setAnchorLocationY(collidingObject.getBoundingBox().getMinY() - 50);
+                    break;
+                case LEFT:
+                    nullifySpeedInDirection(90d);
+                    break;
+                case RIGHT:
+                    nullifySpeedInDirection(270d);
+                    break;
+                case BOTTOM:
+                    nullifySpeedInDirection(180d);
+                    springTeller = 0;
+                    break;
+            }
+        }
     }
+
 
     private Side getCollisionSide(Collider collider) {
         Bounds collidedBoundingBox = this.getBoundingBox();
