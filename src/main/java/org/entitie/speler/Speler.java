@@ -96,33 +96,32 @@ public class Speler extends DynamicSpriteEntity implements KeyListener, Newtonia
                         springTeller = 0;
                         break;
                 }
+            } else if (collidingObject instanceof Steen) {
+                switch (getCollisionSide(collidingObject)) {
+                    case TOP:
+                        setAnchorLocationY(collidingObject.getBoundingBox().getMinY() - 50);
+                        springTeller = 2;
+                        break;
+                    case LEFT:
+                        nullifySpeedInDirection(90d);
+                        break;
+                    case RIGHT:
+                        nullifySpeedInDirection(270d);
+                        break;
+                    case BOTTOM:
+                        nullifySpeedInDirection(180d);
+                        springTeller = 0;
+                        break;
+                }
             }
-        }
-        else if (collidingObject instanceof Steen) {
-            switch (getCollisionSide(collidingObject)) {
-                case TOP:
-                    setAnchorLocationY(collidingObject.getBoundingBox().getMinY() - 50);
-                    springTeller = 2;
-                    break;
-                case LEFT:
-                    nullifySpeedInDirection(90d);
-                    break;
-                case RIGHT:
-                    nullifySpeedInDirection(270d);
-                    break;
-                case BOTTOM:
-                    nullifySpeedInDirection(180d);
-                    springTeller = 0;
-                    break;
-            }
-        }
 
-
+        }
         if (collidingObject instanceof BewegendPlatform) {
             System.out.println(getCollisionSide(collidingObject));
             switch (getCollisionSide(collidingObject)) {
                 case TOP:
                     setAnchorLocationY(collidingObject.getBoundingBox().getMinY() - 50);
+                    springTeller = 2;
                     break;
                 case LEFT:
                     nullifySpeedInDirection(90d);
