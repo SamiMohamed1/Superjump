@@ -7,6 +7,6 @@ import com.github.hanyaeger.api.entities.impl.SpriteEntity;
 
 public abstract class Platform extends SpriteEntity implements Collider {
     public Platform(Coordinate2D initialLocation, Size size, String resource) {
-        super(resource, initialLocation, size);
+        super(resource, initialLocation, new Size(50,50));
     }
 }
