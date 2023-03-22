@@ -2,7 +2,6 @@ package org.map;
 
 import com.github.hanyaeger.api.scenes.TileMap;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
-import com.github.hanyaeger.core.entities.EntitySupplier;
 import com.google.inject.Injector;
 import org.map.Grond;
 

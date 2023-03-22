@@ -7,8 +7,13 @@ import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 import javafx.scene.input.MouseButton;
 import org.SuperJumpGame;
 import org.entitie.speler.Speler;
+import org.entitie.vijand.baas.Baas;
+import org.entitie.vijand.vijand1.Vijand1;
 import org.map.BewegendPlatform;
 import org.map.Map;
+
+import static java.util.Objects.isNull;
+
 
 public class SpelLevels extends DynamicScene implements MouseButtonPressedListener, TileMapContainer {
     private SuperJumpGame superJumpGame;
@@ -26,8 +31,10 @@ public class SpelLevels extends DynamicScene implements MouseButtonPressedListen
     @Override
     public void setupEntities() {
          Speler speler = new Speler(new Coordinate2D(getWidth()/2,getHeight()/2));
-        BewegendPlatform bewegendPlatform = new BewegendPlatform("afbeeldingen/Ijzer.png", new Coordinate2D(100,200));
         addEntity(speler);
+        Baas baas = new Baas((new Coordinate2D(getWidth()/2, 200)),10,10);
+        addEntity(baas);
+        BewegendPlatform bewegendPlatform = new BewegendPlatform("afbeeldingen/Ijzer.png", new Coordinate2D(100,200));
         addEntity(bewegendPlatform);
     }
 
