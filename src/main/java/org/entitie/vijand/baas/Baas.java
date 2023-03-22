@@ -10,7 +10,7 @@ public class Baas extends Vijand  {
     }
     protected void setupEntities() {
       //  Hitbox hitbox = new Hitbox();
-        BaasSprite baasSprite = new BaasSprite(new Coordinate2D(getWidth()/2,200));
+        BaasSprite baasSprite = new BaasSprite(new Coordinate2D(10,10));
         addEntity(baasSprite);
         System.out.println(baasSprite.getAnchorLocation());
     }
