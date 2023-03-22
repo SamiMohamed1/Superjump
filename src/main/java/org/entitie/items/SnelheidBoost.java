@@ -7,7 +7,7 @@ import com.github.hanyaeger.api.entities.Collider;
 import org.PlayerCollision;
 import org.entitie.speler.Speler;
 
-public class SnelheidBoost extends Item implements Collider, Collided, PlayerCollision {
+public class SnelheidBoost extends Item  {
 
     public SnelheidBoost(Coordinate2D initialLocation, Size size, String resource) {
         super(initialLocation, size, resource);
