@@ -28,7 +28,7 @@ public class Speler extends DynamicSpriteEntity implements KeyListener, Newtonia
     @Override
     public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
         if (getSpeed() >= 15) {
-            setSpeed(25);
+            setSpeed(15);
         }
         if (pressedKeys.contains(KeyCode.LEFT)) {
             addToMotion(5, 270d);
