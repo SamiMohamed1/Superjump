@@ -13,7 +13,7 @@ import org.map.*;
 
 import java.util.Set;
 
-public class Speler extends DynamicSpriteEntity implements KeyListener, Newtonian, SceneBorderCrossingWatcher, SceneBorderTouchingWatcher, Collided {
+public class Speler extends DynamicSpriteEntity implements KeyListener, Newtonian, SceneBorderCrossingWatcher, SceneBorderTouchingWatcher, Collided,Collider {
     private int health = 10;
     private int springTeller = 20;
     private float sterkte;
@@ -75,31 +75,18 @@ public class Speler extends DynamicSpriteEntity implements KeyListener, Newtonia
         if (collidingObject instanceof Platform) {
             if (collidingObject instanceof Grond) {
                 setAnchorLocationY(collidingObject.getBoundingBox().getMinY() - 50);
+
                 springTeller = 2;
-            } else if (collidingObject instanceof Ijs) {
+            }
+            else {
                 switch (getCollisionSide(collidingObject)) {
                     case TOP:
                         setAnchorLocationY(collidingObject.getBoundingBox().getMinY() - 50);
-                        setSpeed(getSpeed() + 0.1);
-                        setMotion(getSpeed(), getDirection());
-                        setAnchorLocationY(collidingObject.getBoundingBox().getMinY() - 50);
-                        springTeller = 2;
-                        break;
-                    case LEFT:
-                        nullifySpeedInDirection(90d);
-                        break;
-                    case RIGHT:
-                        nullifySpeedInDirection(270d);
-                        break;
-                    case BOTTOM:
-                        nullifySpeedInDirection(180d);
-                        springTeller = 0;
-                        break;
-                }
-            } else if (collidingObject instanceof Steen) {
-                switch (getCollisionSide(collidingObject)) {
-                    case TOP:
-                        setAnchorLocationY(collidingObject.getBoundingBox().getMinY() - 50);
+                        if (collidingObject instanceof Ijs) {
+                            setSpeed(getSpeed() + 0.1);
+                            setMotion(getSpeed(), getDirection());
+                        }
+
                         springTeller = 2;
                         break;
                     case LEFT:
