@@ -13,6 +13,7 @@ public class StertkeBoost extends Item implements Collider, Collided, PlayerColl
         super(initialLocation, size, resource);
     }
 
+
     @Override
     public void onCollision(Collider collider) {
 
