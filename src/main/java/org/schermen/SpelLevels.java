@@ -34,7 +34,7 @@ public class SpelLevels extends DynamicScene implements MouseButtonPressedListen
     public void setupEntities() {
          Speler speler = new Speler(new Coordinate2D(getWidth()/2,getHeight()/2));
         addEntity(speler);
-        Baas baas = new Baas((new Coordinate2D(getWidth()/2, 200)),10,10);
+        Baas baas = new Baas((new Coordinate2D(getWidth()/2, 0)),10,10);
         addEntity(baas);
         BewegendPlatform bewegendPlatform = new BewegendPlatform("afbeeldingen/Ijzer.png", new Coordinate2D(100,200));
         addEntity(bewegendPlatform);
