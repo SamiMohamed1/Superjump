@@ -9,26 +9,31 @@ import com.github.hanyaeger.api.userinput.KeyListener;
 import javafx.geometry.Bounds;
 import javafx.geometry.Side;
 import javafx.scene.input.KeyCode;
+import org.PlayerCollision;
+import org.entitie.items.Item;
+import org.entitie.items.Schild;
+import org.entitie.items.SnelheidBoost;
 import org.map.*;
 
 import java.util.Set;
 
 public class Speler extends DynamicSpriteEntity implements KeyListener, Newtonian, SceneBorderCrossingWatcher, SceneBorderTouchingWatcher, Collided,Collider {
-    private int health = 10;
+    private int levens = 10;
     private int springTeller = 20;
-    private float sterkte;
+    private float sterkte = 2;
 
 
     public Speler(Coordinate2D Location) {
         super("afbeeldingen/testarcher1.png", Location, new Size(50, 50));
         setFrictionConstant(0.05);
         setGravityConstant(0.25);
+
     }
 
     @Override
     public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
-        if (getSpeed() >= 15) {
-            setSpeed(15);
+        if (getSpeed() >= 20) {
+            setSpeed(20);
         }
         if (pressedKeys.contains(KeyCode.LEFT)) {
             addToMotion(5, 270d);
@@ -42,6 +47,8 @@ public class Speler extends DynamicSpriteEntity implements KeyListener, Newtonia
             addToMotion(5, 0d);
         }
         System.out.println(springTeller);
+        System.out.println("sterkte" + sterkte);
+
     }
 
 
@@ -69,6 +76,12 @@ public class Speler extends DynamicSpriteEntity implements KeyListener, Newtonia
                 break;
         }
     }
+    public void setLevens() {
+        levens = levens +3;
+    }
+    public void setSterkte(){
+        sterkte = sterkte +3;
+    }
 
     @Override
     public void onCollision(Collider collidingObject) {
@@ -77,8 +90,7 @@ public class Speler extends DynamicSpriteEntity implements KeyListener, Newtonia
                 setAnchorLocationY(collidingObject.getBoundingBox().getMinY() - 50);
 
                 springTeller = 2;
-            }
-            else {
+            } else {
                 switch (getCollisionSide(collidingObject)) {
                     case TOP:
                         setAnchorLocationY(collidingObject.getBoundingBox().getMinY() - 50);
@@ -122,7 +134,13 @@ public class Speler extends DynamicSpriteEntity implements KeyListener, Newtonia
                     break;
             }
         }
-    }
+        if (collidingObject instanceof PlayerCollision playerCollision) {
+            playerCollision.PlayerCollision(this);
+        }
+        }
+
+
+
 
 
     private Side getCollisionSide(Collider collider) {
@@ -168,6 +186,11 @@ public class Speler extends DynamicSpriteEntity implements KeyListener, Newtonia
             }
             return Side.RIGHT;
         }
+    }
+
+
+    public void setSnelheid() {
+        setSpeed(getSpeed() +3);
     }
 }
 

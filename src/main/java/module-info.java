@@ -5,6 +5,7 @@ module superjump {
     exports org.schermen;
     exports org;
     opens afbeeldingen;
+    exports org.entitie.items;
 
 
 }
