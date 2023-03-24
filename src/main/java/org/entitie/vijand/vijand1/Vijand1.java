@@ -42,13 +42,14 @@ public class Vijand1 extends Vijand implements KeyListener {
     public void onPressedKeysChange(Set<KeyCode> set) {
         spelerRichting =  richting.getBoundingBox().getCenterX();
         System.out.println(spelerRichting);
-        if(spelerRichting >500){
-            setMotion(3,90d);
+        if(spelerRichting >getSceneWidth()/2){
+            setMotion(3,90);
+            System.out.println(000000000000000000);
+            System.out.println(getSceneWidth());
         }
-        if(spelerRichting <500){
-            setMotion(3,270d);
+        else if(spelerRichting <getSceneWidth()/2){
+            setMotion(3,270);
         }
-
 
     }
 }

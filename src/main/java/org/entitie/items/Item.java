@@ -5,8 +5,9 @@ import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.impl.SpriteEntity;
+import org.PlayerCollision;
 
-public abstract class Item extends SpriteEntity {
+public abstract class Item extends SpriteEntity implements Collider, Collided, PlayerCollision {
 
 
     public Item(Coordinate2D initialLocation, Size size, String resource) {
