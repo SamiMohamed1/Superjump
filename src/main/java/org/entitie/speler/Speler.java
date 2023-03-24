@@ -96,6 +96,7 @@ public class Speler extends DynamicSpriteEntity
     }
     public void geraaktDoorVijand(int vijandSterkte){
         levens = levens - vijandSterkte;
+        System.out.println(levens);
     }
 
     @Override

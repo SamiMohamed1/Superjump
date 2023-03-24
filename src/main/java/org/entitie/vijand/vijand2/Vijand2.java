@@ -3,12 +3,14 @@ package org.entitie.vijand.vijand2;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collider;
+import com.github.hanyaeger.api.scenes.SceneBorder;
 import org.entitie.Hitbox;
+import org.entitie.speler.Speler;
 import org.entitie.vijand.Vijand;
 import org.entitie.vijand.vijand1.Vijand1Sprite;
 
 public class Vijand2 extends Vijand {
-    public Vijand2(Coordinate2D initialLocation, int health,float sterkte) {
+    public Vijand2(Coordinate2D initialLocation, int health,int sterkte) {
         super(initialLocation, health, sterkte,  new Size(50,50));
         setMotion(2,90);
     }
@@ -22,5 +24,21 @@ public class Vijand2 extends Vijand {
     @Override
     public void onCollision(Collider collider) {
 
+    }
+
+    @Override
+    public void notifyBoundaryCrossing(SceneBorder border) {
+        switch (border) {
+            case LEFT:
+                setAnchorLocationX(getSceneWidth() - getWidth() - 10);
+                break;
+            case RIGHT:
+                setAnchorLocationX(10);
+        }
+    }
+
+    @Override
+    public void PlayerCollision(Speler speler) {
+        speler.geraaktDoorVijand(sterkte);
     }
 }
