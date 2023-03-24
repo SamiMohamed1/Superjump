@@ -38,6 +38,6 @@ public class Baas extends Vijand implements PlayerCollision {
 
     @Override
     public void PlayerCollision(Speler speler) {
-        speler.geraaktDoorVijand(sterkte);
+//        speler.geraaktDoorVijand(speler.set);
     }
 }

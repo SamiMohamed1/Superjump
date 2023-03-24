@@ -8,7 +8,7 @@ import org.entitie.speler.Speler;
 
 import java.util.Set;
 
-public class ProjectielSpawner extends EntitySpawner implements KeyListener {
+public class ProjectielSpawner extends EntitySpawner  {
     private double locatieX;
     private double locatieY;
     Speler speler;
@@ -29,12 +29,4 @@ public class ProjectielSpawner extends EntitySpawner implements KeyListener {
 
     }
 
-    @Override
-    public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
-        if(pressedKeys.contains(KeyCode.SPACE)){
-            spawn(new Projectiel(new Coordinate2D(locatieX,locatieY), (int) richting));
-            System.out.println("spatie");
-        }
-
-    }
 }
