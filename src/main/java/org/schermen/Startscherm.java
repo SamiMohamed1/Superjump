@@ -25,7 +25,7 @@ public class Startscherm extends StaticScene {
 
     @Override
     public void setupEntities() {
-        var begintext = new TextEntity(new Coordinate2D(getWidth()/2, getHeight()/3), "Superjump");
+        var begintext = new TextEntity(new Coordinate2D(getWidth()/2, 100), "Superjump");
         begintext.setAnchorPoint(AnchorPoint.CENTER_CENTER);
         begintext.setFill(Color.BLACK);
         addEntity(begintext);
