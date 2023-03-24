@@ -25,14 +25,13 @@ public class Vijand extends DynamicCompositeEntity implements SceneBorderCrossin
     }
 
     @Override
-    public void notifyBoundaryCrossing(SceneBorder sceneBorder) {
-        switch (sceneBorder) {
-            case RIGHT:
-                setAnchorLocationX(10);
-
+    public void notifyBoundaryCrossing(SceneBorder border) {
+        switch (border) {
             case LEFT:
                 setAnchorLocationX(getSceneWidth() - getWidth() - 10);
                 break;
+            case RIGHT:
+                setAnchorLocationX(10);
         }
     }
 
