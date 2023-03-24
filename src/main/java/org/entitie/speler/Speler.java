@@ -13,6 +13,7 @@ import org.PlayerCollision;
 import org.entitie.items.Item;
 import org.entitie.items.Schild;
 import org.entitie.items.SnelheidBoost;
+import org.entitie.vijand.Vijand;
 import org.map.*;
 
 import java.util.Set;
@@ -20,7 +21,7 @@ import java.util.Set;
 public class Speler extends DynamicSpriteEntity implements KeyListener, Newtonian, SceneBorderCrossingWatcher, SceneBorderTouchingWatcher, Collided,Collider {
     private int levens = 10;
     private int springTeller = 20;
-    private float sterkte = 2;
+    private int sterkte = 2;
 
 
     public Speler(Coordinate2D Location) {
@@ -81,6 +82,9 @@ public class Speler extends DynamicSpriteEntity implements KeyListener, Newtonia
     }
     public void setSterkte(){
         sterkte = sterkte +3;
+    }
+    public void geraaktDoorVijand(int vijandSterkte){
+        levens = levens - vijandSterkte;
     }
 
     @Override
