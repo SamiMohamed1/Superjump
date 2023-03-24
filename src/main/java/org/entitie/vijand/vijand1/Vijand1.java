@@ -17,10 +17,8 @@ import org.entitie.vijand.vijand2.Vijand2Sprite;
 import java.util.Set;
 
 public class Vijand1 extends Vijand implements KeyListener, Collider {
-    private Speler richting;
-    private double spelerRichting =0;
-    Coordinate2D andereRichting = getLocationInScene();
-    Coordinate2D playerRichting = richting.getAnchorLocation();
+    Speler richting;
+
     public Vijand1(Coordinate2D initialLocation,Speler richting, int health, int sterkte) {
         super(initialLocation, health, sterkte, new Size(50,50));
         this.richting = richting;
@@ -31,31 +29,28 @@ public class Vijand1 extends Vijand implements KeyListener, Collider {
           addEntity(hitbox);
         Vijand1Sprite vijand1Sprite = new Vijand1Sprite(new Coordinate2D(getWidth()/2,200));
         addEntity(vijand1Sprite);
-    //    System.out.println(vijand1Sprite.getAnchorLocation());
         System.out.println(richting.getAnchorLocation());
     }
 
 
     @Override
     public void onPressedKeysChange(Set<KeyCode> set) {
-        spelerRichting =  richting.getBoundingBox().getCenterX();
-        System.out.println(spelerRichting);
-        if(spelerRichting >getSceneWidth()/2){
-            setMotion(3,90);
-            System.out.println(getSceneWidth());
+
+        if (richting.getBoundingBox().getMinX() > getBoundingBox().getMinX()) {
+            setMotion(1, 90);
         }
-        else if(spelerRichting <getSceneWidth()/2){
-            setMotion(3,270);
+        if (richting.getBoundingBox().getMinX() < getBoundingBox().getMinX()) {
+            setMotion(1, 270);
         }
-//if(playerRichting > andereRichting)
-    }
-
-
-
-    @Override
-    public void onCollision(Collider collider) {
-
-    }
+        if (richting.getBoundingBox().getMinY() > getBoundingBox().getMinY()) {
+       //     setMotion(1, 0);
+            System.out.println(99);
+        }
+            if (richting.getBoundingBox().getMinY() > getBoundingBox().getMinY()) {
+           //     setMotion(1, 180);
+                System.out.println(0);
+            }
+        }
 
     @Override
     public void notifyBoundaryCrossing(SceneBorder sceneBorder) {
@@ -66,5 +61,11 @@ public class Vijand1 extends Vijand implements KeyListener, Collider {
     public void PlayerCollision(Speler speler) {
     speler.geraaktDoorVijand(sterkte);
         System.out.println();
+        setAnchorLocationX(getBoundingBox().getMinX()- (getWidth()*5));
+    }
+
+    @Override
+    public void onCollision(Collider collider) {
+
     }
 }
