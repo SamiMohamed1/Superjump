@@ -12,9 +12,9 @@ import java.util.Set;
 
 public abstract class Vijand extends DynamicCompositeEntity implements SceneBorderCrossingWatcher, Collided, PlayerCollision {
     protected int health;
-    protected float sterkte;
+    protected int sterkte;
 
-    public Vijand(Coordinate2D initialLocation, int health, float sterkte, Size size) {
+    public Vijand(Coordinate2D initialLocation, int health, int sterkte, Size size) {
         super(initialLocation);
         this.health = health;
         this.sterkte = sterkte;

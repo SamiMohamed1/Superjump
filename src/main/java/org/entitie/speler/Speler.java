@@ -85,6 +85,7 @@ public class Speler extends DynamicSpriteEntity implements KeyListener, Newtonia
     }
     public void geraaktDoorVijand(int vijandSterkte){
         levens = levens - vijandSterkte;
+        System.out.println(levens);
     }
 
     @Override

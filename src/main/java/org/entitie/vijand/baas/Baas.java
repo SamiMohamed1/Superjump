@@ -12,7 +12,7 @@ import org.entitie.vijand.Vijand;
 import java.util.Set;
 
 public class Baas extends Vijand  {
-    public Baas(Coordinate2D initialLocation, int health, float sterkte) {
+    public Baas(Coordinate2D initialLocation, int health, int sterkte) {
 
         super(initialLocation, health, sterkte,new Size(50,50));
     }
