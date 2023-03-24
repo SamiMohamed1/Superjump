@@ -14,7 +14,14 @@ import javafx.geometry.Side;
 import javafx.scene.input.KeyCode;
 import org.PlayerCollision;
 
+
 import org.entitie.projectiel.ProjectielSpawner;
+
+import org.entitie.items.Item;
+import org.entitie.items.Schild;
+import org.entitie.items.SnelheidBoost;
+import org.entitie.vijand.Vijand;
+
 import org.map.*;
 
 import java.util.List;
@@ -24,7 +31,7 @@ public class Speler extends DynamicSpriteEntity
         implements  KeyListener, Newtonian, SceneBorderCrossingWatcher, SceneBorderTouchingWatcher, Collided,Collider, EntitySpawnerContainer {
     private int levens = 10;
     private int springTeller = 20;
-    private float sterkte = 2;
+    private int sterkte = 2;
 
     public Speler(Coordinate2D Location) {
         super("afbeeldingen/testarcher1.png", Location, new Size(50, 50));
@@ -86,6 +93,9 @@ public class Speler extends DynamicSpriteEntity
     }
     public void setSterkte(){
         sterkte = sterkte +3;
+    }
+    public void geraaktDoorVijand(int vijandSterkte){
+        levens = levens - vijandSterkte;
     }
 
     @Override

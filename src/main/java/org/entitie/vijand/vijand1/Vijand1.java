@@ -2,7 +2,9 @@ package org.entitie.vijand.vijand1;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
+import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.Newtonian;
+import com.github.hanyaeger.api.scenes.SceneBorder;
 import com.github.hanyaeger.api.userinput.KeyListener;
 import javafx.scene.input.KeyCode;
 import org.entitie.speler.Speler;
@@ -13,15 +15,13 @@ import org.entitie.vijand.vijand2.Vijand2Sprite;
 
 import java.util.Set;
 
-public class Vijand1 extends Vijand implements KeyListener {
+public class Vijand1 extends Vijand implements KeyListener, Newtonian, Collider {
     private Speler richting;
     private double spelerRichting =0;
     public Vijand1(Coordinate2D initialLocation,Speler richting, int health, float sterkte) {
         super(initialLocation, health, sterkte, new Size(50,50));
         this.richting = richting;
-      //  bepaalrichting(spelerRichting);
-        //setFrictionConstant(0.05);
-       // setGravityConstant(0.25);
+
     }
     protected void setupEntities() {
         //  Hitbox hitbox = new Hitbox();
@@ -29,14 +29,6 @@ public class Vijand1 extends Vijand implements KeyListener {
         addEntity(vijand1Sprite);
         System.out.println(vijand1Sprite.getAnchorLocation());
     }
-//    protected void bepaalrichting(int spelerRichting){
-//    if(spelerRichting >getWidth()/2){
-//        addToMotion(3,90);
-//    }
-//        if(spelerRichting >getWidth()/4){
-//            addToMotion(3,270);
-//        }
-//    }
 
     @Override
     public void onPressedKeysChange(Set<KeyCode> set) {
@@ -44,12 +36,26 @@ public class Vijand1 extends Vijand implements KeyListener {
         System.out.println(spelerRichting);
         if(spelerRichting >getSceneWidth()/2){
             setMotion(3,90);
-            System.out.println(000000000000000000);
             System.out.println(getSceneWidth());
         }
         else if(spelerRichting <getSceneWidth()/2){
             setMotion(3,270);
         }
 
+    }
+
+    @Override
+    public void onCollision(Collider collider) {
+
+    }
+
+    @Override
+    public void notifyBoundaryCrossing(SceneBorder sceneBorder) {
+
+    }
+
+    @Override
+    public void PlayerCollision(Speler speler) {
+    speler.geraaktDoorVijand(sterkte);
     }
 }
