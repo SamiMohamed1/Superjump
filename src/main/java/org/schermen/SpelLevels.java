@@ -1,12 +1,14 @@
 package org.schermen;
 
 import com.github.hanyaeger.api.Coordinate2D;
-import com.github.hanyaeger.api.Size;
+import com.github.hanyaeger.api.EntitySpawnerContainer;
 import com.github.hanyaeger.api.scenes.DynamicScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
 import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 import javafx.scene.input.MouseButton;
 import org.SuperJumpGame;
+import org.entitie.projectiel.Projectiel;
+import org.entitie.projectiel.ProjectielSpawner;
 import org.entitie.speler.Speler;
 import org.entitie.vijand.baas.Baas;
 import org.entitie.vijand.vijand1.Vijand1;
@@ -14,11 +16,10 @@ import org.entitie.vijand.vijand2.Vijand2;
 import org.map.BewegendPlatform;
 import org.map.Map;
 
-import static java.util.Objects.isNull;
 
-
-public class SpelLevels extends DynamicScene implements MouseButtonPressedListener, TileMapContainer {
+public class SpelLevels extends DynamicScene implements MouseButtonPressedListener, TileMapContainer, EntitySpawnerContainer {
     private SuperJumpGame superJumpGame;
+    private Speler speler;
 
     public SpelLevels(SuperJumpGame superJumpGame){
         this.superJumpGame = superJumpGame;
@@ -32,7 +33,8 @@ public class SpelLevels extends DynamicScene implements MouseButtonPressedListen
 
     @Override
     public void setupEntities() {
-         Speler speler = new Speler(new Coordinate2D(getWidth()/2,getHeight()/2));
+        speler = new Speler(new Coordinate2D(getWidth()/2,getHeight()/2));
+
         addEntity(speler);
         Baas baas = new Baas((new Coordinate2D(getWidth()/2, 0)),10,10);
         addEntity(baas);
@@ -42,6 +44,7 @@ public class SpelLevels extends DynamicScene implements MouseButtonPressedListen
         addEntity(vijand2);
         Vijand1 vijand1 = new Vijand1((new Coordinate2D(100,100)),speler,10,10);
         addEntity(vijand1);
+
     }
 
     @Override
@@ -52,5 +55,12 @@ Map map = new Map();
     @Override
     public void setupTileMaps() {
     addTileMap(map);
+
+    }
+
+    @Override
+    public void setupEntitySpawners() {
+
+      addEntitySpawner(new ProjectielSpawner(50,50,180, speler));
     }
 }
