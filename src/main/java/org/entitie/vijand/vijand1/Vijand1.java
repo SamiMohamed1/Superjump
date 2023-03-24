@@ -52,12 +52,6 @@ public class Vijand1 extends Vijand implements KeyListener, Collider {
             }
         }
 
-
-    @Override
-    public void onCollision(Collider collider) {
-
-    }
-
     @Override
     public void notifyBoundaryCrossing(SceneBorder sceneBorder) {
 
@@ -67,5 +61,11 @@ public class Vijand1 extends Vijand implements KeyListener, Collider {
     public void PlayerCollision(Speler speler) {
     speler.geraaktDoorVijand(sterkte);
         System.out.println();
+        setAnchorLocationX(getBoundingBox().getMinX()- (getWidth()*5));
+    }
+
+    @Override
+    public void onCollision(Collider collider) {
+
     }
 }
