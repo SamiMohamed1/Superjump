@@ -24,7 +24,7 @@ public class ProjectielSpawner extends EntitySpawner  {
 
     @Override
     public void spawnEntities() {
-        spawn(new Projectiel(new Coordinate2D(speler.getBoundingBox().getMinX() ,speler.getBoundingBox().getMinY()), (int) richting));
+        spawn(new Projectiel(new Coordinate2D(speler.getBoundingBox().getMinX() ,speler.getBoundingBox().getMinY()), (int) richting, speler.getSterkte()));
         System.out.println("spatie");
 
     }

@@ -15,7 +15,6 @@ import org.PlayerCollision;
 
 import org.map.*;
 
-import java.util.List;
 import java.util.Set;
 
 public class Speler extends DynamicSpriteEntity
@@ -48,8 +47,6 @@ public class Speler extends DynamicSpriteEntity
             addToMotion(5, 0d);
         } else if(pressedKeys.contains((KeyCode.SPACE))){
         }
-        System.out.println(springTeller);
-        System.out.println("sterkte" + sterkte);
 
     }
 
@@ -90,7 +87,11 @@ public class Speler extends DynamicSpriteEntity
     }
     public void geraaktDoorVijand(int vijandSterkte){
         levens = levens - vijandSterkte;
-        System.out.println(levens);
+
+    }
+    public int getSterkte(){
+
+        return sterkte;
     }
 
     @Override
@@ -129,7 +130,6 @@ public class Speler extends DynamicSpriteEntity
 
         }
         if (collidingObject instanceof BewegendPlatform) {
-            System.out.println(getCollisionSide(collidingObject));
             switch (getCollisionSide(collidingObject)) {
                 case TOP:
                     setAnchorLocationY(collidingObject.getBoundingBox().getMinY() - 50);
