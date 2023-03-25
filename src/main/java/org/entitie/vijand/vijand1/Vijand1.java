@@ -54,7 +54,6 @@ public class Vijand1 extends Vijand implements KeyListener, Collider {
 
     @Override
     public void notifyBoundaryCrossing(SceneBorder sceneBorder) {
-
     }
 
     @Override
