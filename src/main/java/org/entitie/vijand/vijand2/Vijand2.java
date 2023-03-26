@@ -11,8 +11,8 @@ import org.entitie.vijand.Vijand;
 import org.entitie.vijand.vijand1.Vijand1Sprite;
 
 public class Vijand2 extends Vijand implements PlayerCollision {
-    public Vijand2(Coordinate2D initialLocation, int health,int sterkte) {
-        super(initialLocation, health, sterkte,  new Size(50,50));
+    public Vijand2(Coordinate2D initialLocation, int levens,int sterkte) {
+        super(initialLocation, levens, sterkte,  new Size(50,50));
         setMotion(2,90);
     }
     protected void setupEntities() {
@@ -20,7 +20,6 @@ public class Vijand2 extends Vijand implements PlayerCollision {
          addEntity(hitbox);
         Vijand2Sprite vijand2Sprite = new Vijand2Sprite(new Coordinate2D(getWidth()/2,200), new Size(50,50));
         addEntity(vijand2Sprite);
-        System.out.println(vijand2Sprite.getAnchorLocation());
     }
     @Override
     public void onCollision(Collider collider) {
@@ -42,5 +41,10 @@ public class Vijand2 extends Vijand implements PlayerCollision {
     public void PlayerCollision(Speler speler) {
         speler.geraaktDoorVijand(sterkte);
         setAnchorLocationX(getBoundingBox().getMinX()- (getWidth()*5));
+    }
+
+    @Override
+    public void ProjectilCollision(int spelersterkte) {
+
     }
 }

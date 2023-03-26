@@ -1,34 +1,24 @@
 package org.entitie.speler;
 
 import com.github.hanyaeger.api.Coordinate2D;
-import com.github.hanyaeger.api.EntitySpawnerContainer;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.*;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 import com.github.hanyaeger.api.userinput.KeyListener;
-import com.github.hanyaeger.core.entities.EntityCollection;
-import com.google.inject.Injector;
+
 import javafx.geometry.Bounds;
 import javafx.geometry.Side;
 import javafx.scene.input.KeyCode;
 import org.PlayerCollision;
 
 
-import org.entitie.projectiel.ProjectielSpawner;
-
-import org.entitie.items.Item;
-import org.entitie.items.Schild;
-import org.entitie.items.SnelheidBoost;
-import org.entitie.vijand.Vijand;
-
 import org.map.*;
 
-import java.util.List;
 import java.util.Set;
 
 public class Speler extends DynamicSpriteEntity
-        implements  KeyListener, Newtonian, SceneBorderCrossingWatcher, SceneBorderTouchingWatcher, Collided,Collider, EntitySpawnerContainer {
+        implements  KeyListener, Newtonian, SceneBorderCrossingWatcher, SceneBorderTouchingWatcher, Collided,Collider {
     private int levens = 10;
     private int springTeller = 20;
     private int sterkte = 2;
@@ -57,8 +47,6 @@ public class Speler extends DynamicSpriteEntity
             addToMotion(5, 0d);
         } else if(pressedKeys.contains((KeyCode.SPACE))){
         }
-        System.out.println(springTeller);
-        System.out.println("sterkte" + sterkte);
 
     }
 
@@ -94,13 +82,23 @@ public class Speler extends DynamicSpriteEntity
     public void setSterkte(){
         sterkte = sterkte +3;
     }
+    public void setSnelheid() {
+        setSpeed(getSpeed() +3);
+    }
     public void geraaktDoorVijand(int vijandSterkte){
         levens = levens - vijandSterkte;
-        System.out.println(levens);
+
+    }
+    public int getSterkte(){
+
+        return sterkte;
     }
 
     @Override
     public void onCollision(Collider collidingObject) {
+        if (collidingObject instanceof PlayerCollision playerCollision) {
+            playerCollision.PlayerCollision(this);
+        }
         if (collidingObject instanceof Platform) {
             if (collidingObject instanceof Grond) {
                 setAnchorLocationY(collidingObject.getBoundingBox().getMinY() - 50);
@@ -132,7 +130,6 @@ public class Speler extends DynamicSpriteEntity
 
         }
         if (collidingObject instanceof BewegendPlatform) {
-            System.out.println(getCollisionSide(collidingObject));
             switch (getCollisionSide(collidingObject)) {
                 case TOP:
                     setAnchorLocationY(collidingObject.getBoundingBox().getMinY() - 50);
@@ -150,17 +147,9 @@ public class Speler extends DynamicSpriteEntity
                     break;
             }
         }
-        if (collidingObject instanceof PlayerCollision playerCollision) {
-            playerCollision.PlayerCollision(this);
-        }
+
         }
 
-    @Override
-    public void setupEntitySpawners() {
-        System.out.println(224252353);
-//        addEntitySpawner(new ProjectielSpawner(50, 50,90d));
-//        addEntitySpawner(projectielSpawner);
-    }
 
 
 
@@ -168,26 +157,12 @@ public class Speler extends DynamicSpriteEntity
 
 
 
-    public void setSnelheid() {
-        setSpeed(getSpeed() +3);
-    }
 
 
 
-    @Override
-    public Injector getInjector() {
-        return null;
-    }
 
-    @Override
-    public EntityCollection getEntityCollection() {
-        return null;
-    }
 
-    @Override
-    public List<EntitySpawner> getSpawners() {
-        return null;
-    }
+
 
     private Side getCollisionSide(Collider collider) {
         Bounds collidedBoundingBox = this.getBoundingBox();
