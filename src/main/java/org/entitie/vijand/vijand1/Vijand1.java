@@ -18,6 +18,7 @@ import java.util.Set;
 
 public class Vijand1 extends Vijand implements KeyListener, Collider {
     Speler richting;
+    private boolean spelerBeweegt = false;
 
     public Vijand1(Coordinate2D initialLocation,Speler richting, int health, int sterkte) {
         super(initialLocation, health, sterkte, new Size(50,50));
@@ -27,29 +28,34 @@ public class Vijand1 extends Vijand implements KeyListener, Collider {
     protected void setupEntities() {
           Hitbox hitbox = new Hitbox(new Coordinate2D(0,0),50,50);
           addEntity(hitbox);
-        Vijand1Sprite vijand1Sprite = new Vijand1Sprite(new Coordinate2D(getWidth()/2,200));
+        Vijand1Sprite vijand1Sprite = new Vijand1Sprite(new Coordinate2D(0,0));
         addEntity(vijand1Sprite);
-        System.out.println(richting.getAnchorLocation());
+      //  System.out.println(richting.getAnchorLocation());
     }
 
 
     @Override
     public void onPressedKeysChange(Set<KeyCode> set) {
-
-        if (richting.getBoundingBox().getMinX() > getBoundingBox().getMinX()) {
-            setMotion(1, 90);
-        }
-        if (richting.getBoundingBox().getMinX() < getBoundingBox().getMinX()) {
-            setMotion(1, 270);
-        }
-        if (richting.getBoundingBox().getMinY() > getBoundingBox().getMinY()) {
-       //     setMotion(1, 0);
-            System.out.println(99);
-        }
-            if (richting.getBoundingBox().getMinY() > getBoundingBox().getMinY()) {
-           //     setMotion(1, 180);
-                System.out.println(0);
-            }
+       if( set.contains(KeyCode.LEFT) ||set.contains(KeyCode.UP) || set.contains(KeyCode.DOWN) || set.contains(KeyCode.RIGHT)) {
+           if (richting.getBoundingBox().getMinX() > getBoundingBox().getMinX()) {
+               setMotion(3, 90);
+           }
+           if (richting.getBoundingBox().getMinX() < getBoundingBox().getMinX()) {
+               setMotion(3, 270);
+           }
+           if (richting.getBoundingBox().getMinY() > getBoundingBox().getMinY()) {
+               //     setMotion(1, 0);
+               System.out.println(99);
+           }
+           if (richting.getBoundingBox().getMinY() > getBoundingBox().getMinY()) {
+               //     setMotion(1, 180);
+               System.out.println(0);
+           }
+           spelerBeweegt = true;
+       } else {
+           spelerBeweegt = false;
+       }
+       vijandDoe();
         }
 
     @Override
@@ -67,5 +73,13 @@ public class Vijand1 extends Vijand implements KeyListener, Collider {
     @Override
     public void onCollision(Collider collider) {
 
+    }
+
+    @Override
+    public void vijandDoe() {
+  if (spelerBeweegt == false){
+     setMotion(0.1,90);
+      System.out.println("sta stil");
+   }
     }
 }
