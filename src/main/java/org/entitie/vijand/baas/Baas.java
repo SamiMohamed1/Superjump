@@ -14,7 +14,6 @@ import java.util.Set;
 
 public class Baas extends Vijand implements PlayerCollision {
     public Baas(Coordinate2D initialLocation, int levens, int sterkte) {
-
         super(initialLocation, levens, sterkte,new Size(50,50));
     }
     protected void setupEntities() {
@@ -44,5 +43,9 @@ public class Baas extends Vijand implements PlayerCollision {
     @Override
     public void vijandDoe() {
         //schiet
+    }
+
+    public int getSterkte() {
+        return sterkte;
     }
 }

@@ -8,15 +8,19 @@ import com.github.hanyaeger.api.entities.SceneBorderCrossingWatcher;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 import org.PlayerCollision;
 import org.entitie.Hitbox;
+import org.entitie.projectiel.ProjectielCollision;
 import org.entitie.speler.Speler;
 import org.entitie.vijand.Vijand;
 import org.entitie.vijand.vijand1.Vijand1Sprite;
 
+
 public class Vijand2 extends Vijand implements PlayerCollision, SceneBorderCrossingWatcher, UpdateExposer {
     private int bewegingsRichting = 0;
+    
     public Vijand2(Coordinate2D initialLocation, int levens,int sterkte) {
         super(initialLocation, levens, sterkte,  new Size(50,50));
         setMotion(2,90);
+        vijandDoe();
     }
     protected void setupEntities() {
          Hitbox hitbox = new Hitbox(new Coordinate2D(0,0),50,50);
@@ -53,16 +57,12 @@ public class Vijand2 extends Vijand implements PlayerCollision, SceneBorderCross
     public void PlayerCollision(Speler speler) {
         System.out.println(1234);
         speler.geraaktDoorVijand(sterkte);
-       // setAnchorLocationX(getBoundingBox().getMinX()- (getWidth()*5));
         switch(bewegingsRichting) {
             case 0:
-                setAnchorLocationX(getBoundingBox().getMinX()- (getWidth()*1.5));
                 bewegingsRichting = 1;
                 break;
             case 1:
                 bewegingsRichting = 0;
-                setAnchorLocationX(getBoundingBox().getMinX()+ (getWidth()*1.5));
-
                 break;
         }
     }
@@ -74,7 +74,12 @@ public class Vijand2 extends Vijand implements PlayerCollision, SceneBorderCross
 
     @Override
     public void ProjectilCollision(int spelersterkte) {
-
+        levens = levens - spelersterkte;
+        System.out.println("levens:" + levens);
+        System.out.println("sterkte:" + spelersterkte);
+        if (levens <= 0) {
+            remove();
+        }
     }
     @Override
     public void explicitUpdate(long l) {

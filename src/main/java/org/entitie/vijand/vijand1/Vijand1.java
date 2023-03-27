@@ -25,17 +25,18 @@ public class Vijand1 extends Vijand implements KeyListener, Collider, UpdateExpo
     private int sterkte;
 
 
-    public Vijand1(Coordinate2D initialLocation,Speler richting, int levens, int sterkte) {
-        super(initialLocation, levens, sterkte, new Size(50,50));
+    public Vijand1(Coordinate2D initialLocation, Speler richting, int levens, int sterkte) {
+        super(initialLocation, levens, sterkte, new Size(50, 50));
         this.richting = richting;
         this.levens = levens;
         this.sterkte = sterkte;
 
     }
+
     protected void setupEntities() {
-          Hitbox hitbox = new Hitbox(new Coordinate2D(0,0),50,50);
-          addEntity(hitbox);
-        Vijand1Sprite vijand1Sprite = new Vijand1Sprite(new Coordinate2D(0,0));
+        Hitbox hitbox = new Hitbox(new Coordinate2D(0, 0), 50, 50);
+        addEntity(hitbox);
+        Vijand1Sprite vijand1Sprite = new Vijand1Sprite(new Coordinate2D(0, 0));
         addEntity(vijand1Sprite);
       //  System.out.println(richting.getAnchorLocation());
     }
@@ -43,7 +44,7 @@ public class Vijand1 extends Vijand implements KeyListener, Collider, UpdateExpo
 
     @Override
     public void onPressedKeysChange(Set<KeyCode> set) {
-        if( set.contains(KeyCode.LEFT) ||set.contains(KeyCode.UP) || set.contains(KeyCode.DOWN) || set.contains(KeyCode.RIGHT)) {
+        if (set.contains(KeyCode.LEFT) || set.contains(KeyCode.UP) || set.contains(KeyCode.DOWN) || set.contains(KeyCode.RIGHT)) {
             if (richting.getBoundingBox().getMinX() > getBoundingBox().getMinX()) {
                 setMotion(3, 90);
             }
@@ -81,7 +82,7 @@ public class Vijand1 extends Vijand implements KeyListener, Collider, UpdateExpo
         levens = levens - spelersterkte;
         System.out.println("levens:" + levens);
         System.out.println("sterkte:" + spelersterkte);
-        if(levens <= 0){
+        if (levens <= 0) {
             remove();
         }
     }
@@ -91,3 +92,4 @@ public class Vijand1 extends Vijand implements KeyListener, Collider, UpdateExpo
         vijandDoe();
     }
 }
+

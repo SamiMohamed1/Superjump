@@ -25,6 +25,6 @@ public class SuperJumpGame extends YaegerGame {
     addScene(0, new Startscherm(this));
     addScene(1,new SpelLevels(this));
     addScene(2,new SpelVoorbij(this));
-    setActiveScene(2);
+    setActiveScene(0);
     }
 }
