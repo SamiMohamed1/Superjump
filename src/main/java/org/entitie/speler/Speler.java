@@ -120,6 +120,7 @@ public class Speler extends DynamicSpriteEntity
                         springTeller = 2;
                         break;
                     case LEFT:
+
                         nullifySpeedInDirection(90d);
                         break;
                     case RIGHT:
@@ -200,6 +201,8 @@ public class Speler extends DynamicSpriteEntity
         }
     }
 
+
+
     @Override
     public void spelerProjectilCollision(int spelersterkte) {
 
@@ -207,7 +210,7 @@ public class Speler extends DynamicSpriteEntity
 
     @Override
     public void enemyProjectilCollision() {
-    levens = levens -3;
+        setLevens(-3);
     }
 }
 

@@ -23,6 +23,9 @@ public class EnemyProjectiel extends DynamicSpriteEntity implements Collided, Co
             remove();
         }
     }
+
+
+
     @Override
     public void spelerProjectilCollision(int spelersterkte) {
     }

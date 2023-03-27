@@ -4,6 +4,7 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.UpdateExposer;
 import com.github.hanyaeger.api.entities.Collider;
+import com.github.hanyaeger.api.entities.SceneBorderCrossingWatcher;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 import com.github.hanyaeger.api.userinput.KeyListener;
 import javafx.scene.input.KeyCode;
@@ -14,7 +15,7 @@ import org.entitie.vijand.Vijand;
 
 import java.util.Set;
 
-public class Vijand1 extends Vijand implements KeyListener, Collider, UpdateExposer, ProjectielCollision {
+public class Vijand1 extends Vijand implements KeyListener, Collider, UpdateExposer, ProjectielCollision, SceneBorderCrossingWatcher {
     Speler richting;
 
     private boolean spelerBeweegt = false;
@@ -109,19 +110,16 @@ public class Vijand1 extends Vijand implements KeyListener, Collider, UpdateExpo
             }
         }
     }
-@Override
-    public void ProjectilCollision(int spelersterkte) {
+
+
+    @Override
+    public void spelerProjectilCollision(int spelersterkte) {
         levens = levens - spelersterkte;
         System.out.println("levens:" + levens);
         System.out.println("sterkte:" + spelersterkte);
         if (levens <= 0) {
             remove();
         }
-    }
-
-    @Override
-    public void spelerProjectilCollision(int spelersterkte) {
-        
     }
 
     @Override

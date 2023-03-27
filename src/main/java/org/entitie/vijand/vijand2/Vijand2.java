@@ -11,10 +11,9 @@ import org.entitie.Hitbox;
 import org.entitie.projectiel.ProjectielCollision;
 import org.entitie.speler.Speler;
 import org.entitie.vijand.Vijand;
-import org.entitie.vijand.vijand1.Vijand1Sprite;
 
 
-public class Vijand2 extends Vijand implements PlayerCollision,Collider, ProjectielCollision,UpdateExposer {
+public class Vijand2 extends Vijand implements PlayerCollision,Collider, ProjectielCollision,UpdateExposer,SceneBorderCrossingWatcher {
     private int bewegingsRichting;
     public Vijand2(Coordinate2D initialLocation, int levens,int sterkte) {
         super(initialLocation, levens, sterkte,  new Size(50,50));
@@ -78,19 +77,16 @@ public class Vijand2 extends Vijand implements PlayerCollision,Collider, Project
      beweeg();
     }
 
+
+
     @Override
-    public void ProjectilCollision(int spelersterkte) {
+    public void spelerProjectilCollision(int spelersterkte) {
         levens = levens - spelersterkte;
         System.out.println("levens:" + levens);
         System.out.println("sterkte:" + spelersterkte);
         if (levens <= 0) {
             remove();
         }
-    }
-
-    @Override
-    public void spelerProjectilCollision(int spelersterkte) {
-
     }
 
     @Override
