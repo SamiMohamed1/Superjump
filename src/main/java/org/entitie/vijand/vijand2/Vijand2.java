@@ -12,12 +12,11 @@ import org.entitie.speler.Speler;
 import org.entitie.vijand.Vijand;
 import org.entitie.vijand.vijand1.Vijand1Sprite;
 
-public class Vijand2 extends Vijand implements SceneBorderCrossingWatcher, Collider, UpdateExposer {
-
+public class Vijand2 extends Vijand implements PlayerCollision, SceneBorderCrossingWatcher, UpdateExposer {
     private int bewegingsRichting = 0;
-    public Vijand2(Coordinate2D initialLocation, int health,int sterkte) {
-        super(initialLocation, health, sterkte,  new Size(50,50));
-      vijandDoe();
+    public Vijand2(Coordinate2D initialLocation, int levens,int sterkte) {
+        super(initialLocation, levens, sterkte,  new Size(50,50));
+        setMotion(2,90);
     }
     protected void setupEntities() {
          Hitbox hitbox = new Hitbox(new Coordinate2D(0,0),50,50);
@@ -73,6 +72,10 @@ public class Vijand2 extends Vijand implements SceneBorderCrossingWatcher, Colli
      beweeg();
     }
 
+    @Override
+    public void ProjectilCollision(int spelersterkte) {
+
+    }
     @Override
     public void explicitUpdate(long l) {
         vijandDoe();

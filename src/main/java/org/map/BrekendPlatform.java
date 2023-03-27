@@ -16,4 +16,5 @@ public class BrekendPlatform extends Platform implements Collided {
     public void onCollision(Collider collider) {
         remove();
     }
+
 }

@@ -13,9 +13,9 @@ import org.entitie.vijand.Vijand;
 import java.util.Set;
 
 public class Baas extends Vijand implements PlayerCollision {
-    public Baas(Coordinate2D initialLocation, int health, int sterkte) {
+    public Baas(Coordinate2D initialLocation, int levens, int sterkte) {
 
-        super(initialLocation, health, sterkte,new Size(50,50));
+        super(initialLocation, levens, sterkte,new Size(50,50));
     }
     protected void setupEntities() {
        Hitbox hitbox = new Hitbox(new Coordinate2D(0,0),50,50);
@@ -32,7 +32,13 @@ public class Baas extends Vijand implements PlayerCollision {
 
     @Override
     public void PlayerCollision(Speler speler) {
-        speler.geraaktDoorVijand(sterkte);
+//        speler.geraaktDoorVijand(speler.set);
+
+    }
+
+    @Override
+    public void ProjectilCollision(int spelersterkte) {
+
     }
 
     @Override

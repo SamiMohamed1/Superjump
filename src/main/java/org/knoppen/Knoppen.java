@@ -11,7 +11,7 @@ import javafx.scene.paint.Color;
 import org.SuperJumpGame;
 
 public class Knoppen extends TextEntity implements MouseButtonPressedListener, MouseEnterListener {
-    private SuperJumpGame superJumpGame;
+    protected SuperJumpGame superJumpGame;
     public Knoppen(Coordinate2D initialLocation, SuperJumpGame superJumpGame) {
         super(initialLocation,"Starten");
         this.superJumpGame = superJumpGame;
