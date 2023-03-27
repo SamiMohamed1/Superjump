@@ -9,7 +9,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import org.SuperJumpGame;
-import org.knoppen.Knoppen;
+import org.knoppen.StartKnop;
+import org.knoppen.StartKnop;
 
 public class Startscherm extends StaticScene {
     private SuperJumpGame superJumpGame;
@@ -29,7 +30,7 @@ public class Startscherm extends StaticScene {
         begintext.setAnchorPoint(AnchorPoint.CENTER_CENTER);
         begintext.setFill(Color.BLACK);
         addEntity(begintext);
-        Knoppen knoppen = new Knoppen(new Coordinate2D(getWidth()/2,getHeight()/2), superJumpGame);
-        addEntity(knoppen);
+        StartKnop startKnop = new StartKnop(new Coordinate2D(getWidth()/2,getHeight()/2), superJumpGame);
+        addEntity(startKnop);
     }
 }

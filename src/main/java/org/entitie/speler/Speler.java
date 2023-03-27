@@ -152,7 +152,7 @@ public class Speler extends DynamicSpriteEntity
                     break;
             }
         }
-        if(levens <= 0){superJumpGame.setActiveScene(2);}
+        if(levens <= 0){superJumpGame.setActiveScene(3);}
     }
 
 
