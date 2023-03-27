@@ -15,7 +15,7 @@ public class SuperJumpGame extends YaegerGame {
     @Override
     public void setupGame() {
     setGameTitle("Supergame");
-    setSize(new Size(1000, 500));
+    setSize(new Size(1500, 750));
     }
 
 
