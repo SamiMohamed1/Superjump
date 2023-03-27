@@ -6,7 +6,7 @@ import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.impl.SpriteEntity;
 
-public class Steen extends Platform implements Collided, Collider {
+public class Steen extends Platform implements Collided {
     public Steen(Coordinate2D initialLocation, Size size, String resource) {
         super(initialLocation, size, resource);
     }
