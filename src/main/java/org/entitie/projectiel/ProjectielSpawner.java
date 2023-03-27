@@ -5,6 +5,8 @@ import com.github.hanyaeger.api.entities.EntitySpawner;
 import org.entitie.speler.Speler;
 import org.entitie.vijand.baas.Baas;
 
+import java.util.Random;
+
 public class ProjectielSpawner extends EntitySpawner {
     private double locatieX;
     private double locatieY;
@@ -14,7 +16,7 @@ public class ProjectielSpawner extends EntitySpawner {
     private String type;
 
     public ProjectielSpawner(double locatieX, double locatieY, double richting, Speler speler, Baas baas, String type) {
-        super(1000);
+        super(500);
         this.locatieX = locatieX;
         this.locatieY = locatieY;
         this.richting = richting;
@@ -29,8 +31,13 @@ public class ProjectielSpawner extends EntitySpawner {
             spawn(new SpelerProjectiel(new Coordinate2D(speler.getBoundingBox().getMinX(), speler.getBoundingBox().getMinY()), (int) richting, speler.getSterkte()));
             System.out.println("spatie");
         } else if (type == "baas") {
-            spawn(new EnemyProjectiel(new Coordinate2D(baas.getBoundingBox().getMinX(),baas.getBoundingBox().getMinY()), (int) richting,speler.getSterkte()));
+            spawn(new EnemyProjectiel(new Coordinate2D(baas.getBoundingBox().getCenterX(),baas.getBoundingBox().getCenterY()), randomRichting(),speler.getSterkte()));
         }
+    }
+    public int randomRichting(){
+        richting = new Random().nextInt(-70,70);
+        System.out.println(richting);
+        return (int) richting;
     }
 
 }

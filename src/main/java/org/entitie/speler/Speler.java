@@ -13,6 +13,7 @@ import javafx.scene.input.KeyCode;
 import org.PlayerCollision;
 
 
+import org.SuperJumpGame;
 import org.map.*;
 
 import java.util.Set;
@@ -22,6 +23,7 @@ public class Speler extends DynamicSpriteEntity
     private int levens = 10;
     private int springTeller = 20;
     private int sterkte = 2;
+    SuperJumpGame superJumpGame = new SuperJumpGame();
 
     public Speler(Coordinate2D Location) {
         super("afbeeldingen/testarcher1.png", Location, new Size(50, 50));
@@ -148,21 +150,8 @@ public class Speler extends DynamicSpriteEntity
                     break;
             }
         }
-
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
+        if(levens <= 0){superJumpGame.setActiveScene(2);}
+    }
 
 
     private Side getCollisionSide(Collider collider) {
