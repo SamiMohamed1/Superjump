@@ -7,7 +7,6 @@ import com.github.hanyaeger.api.scenes.TileMapContainer;
 import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 import javafx.scene.input.MouseButton;
 import org.SuperJumpGame;
-import org.entitie.projectiel.Projectiel;
 import org.entitie.projectiel.ProjectielSpawner;
 import org.entitie.speler.Speler;
 import org.entitie.vijand.baas.Baas;
@@ -20,6 +19,7 @@ import org.map.Map;
 public class SpelLevels extends DynamicScene implements MouseButtonPressedListener, TileMapContainer, EntitySpawnerContainer {
     private SuperJumpGame superJumpGame;
     private Speler speler;
+    private Baas baas;
 
     public SpelLevels(SuperJumpGame superJumpGame){
         this.superJumpGame = superJumpGame;
@@ -33,16 +33,16 @@ public class SpelLevels extends DynamicScene implements MouseButtonPressedListen
 
     @Override
     public void setupEntities() {
-        speler = new Speler(new Coordinate2D(getWidth()/2,getHeight()/2));
+        speler = new Speler(new Coordinate2D(getWidth()/2,getHeight()/2), superJumpGame);
 
         addEntity(speler);
-        Baas baas = new Baas((new Coordinate2D(getWidth()/2, 0)),10,10);
+         baas = new Baas((new Coordinate2D(getWidth()/2, 0)),10,10);
         addEntity(baas);
         BewegendPlatform bewegendPlatform = new BewegendPlatform("afbeeldingen/Ijzer.png", new Coordinate2D(100,200));
         addEntity(bewegendPlatform);
-        Vijand2 vijand2 = new Vijand2((new Coordinate2D(100,100)),10,10);
+        Vijand2 vijand2 = new Vijand2((new Coordinate2D(100,350)),10,10);
         addEntity(vijand2);
-        Vijand1 vijand1 = new Vijand1((new Coordinate2D(100,100)),speler,10,10);
+        Vijand1 vijand1 = new Vijand1((new Coordinate2D(100,100)),speler,4,10);
         addEntity(vijand1);
 
     }
@@ -61,6 +61,9 @@ Map map = new Map();
     @Override
     public void setupEntitySpawners() {
 
-      addEntitySpawner(new ProjectielSpawner(50,50,180, speler));
+      addEntitySpawner(new ProjectielSpawner(0,0,180d,speler,baas,"speler"));
+      addEntitySpawner(new ProjectielSpawner(getWidth()/2,0,0,speler,baas,"baas"));
+
     }
+
 }

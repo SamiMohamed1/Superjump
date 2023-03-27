@@ -16,7 +16,7 @@ public class SuperJumpGame extends YaegerGame {
     @Override
     public void setupGame() {
     setGameTitle("Supergame");
-    setSize(new Size(1000, 500));
+    setSize(new Size(1250, 600));
     }
 
 
@@ -25,6 +25,6 @@ public class SuperJumpGame extends YaegerGame {
     addScene(0, new Startscherm(this));
     addScene(1,new SpelLevels(this));
     addScene(2,new SpelVoorbij(this));
-    setActiveScene(2);
+    setActiveScene(0);
     }
 }

@@ -14,6 +14,9 @@ public class BrekendPlatform extends Platform implements Collided {
 
     @Override
     public void onCollision(Collider collider) {
-        remove();
+        if(collider instanceof Speler){
+            remove();
+        }
     }
+
 }

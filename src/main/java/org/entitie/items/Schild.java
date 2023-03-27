@@ -20,7 +20,7 @@ public class Schild extends Item  {
 
     @Override
     public void PlayerCollision(Speler speler) {
-        speler.setLevens();
+        speler.setLevens(1);
         remove();
     }
 }

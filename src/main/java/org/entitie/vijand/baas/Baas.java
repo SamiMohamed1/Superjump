@@ -13,9 +13,8 @@ import org.entitie.vijand.Vijand;
 import java.util.Set;
 
 public class Baas extends Vijand implements PlayerCollision {
-    public Baas(Coordinate2D initialLocation, int health, int sterkte) {
-
-        super(initialLocation, health, sterkte,new Size(50,50));
+    public Baas(Coordinate2D initialLocation, int levens, int sterkte) {
+        super(initialLocation, levens, sterkte,new Size(50,50));
     }
     protected void setupEntities() {
        Hitbox hitbox = new Hitbox(new Coordinate2D(0,0),50,50);
@@ -31,13 +30,29 @@ public class Baas extends Vijand implements PlayerCollision {
     }
 
     @Override
-    public void notifyBoundaryCrossing(SceneBorder sceneBorder) {
+    public void PlayerCollision(Speler speler) {
+//        speler.geraaktDoorVijand(speler.set);
+
+    }
+    public void setLeven(int verandering){
+        levens = levens + verandering;
+    }
+    @Override
+    public void spelerProjectilCollision(int spelersterkte) {
 
     }
 
+    @Override
+    public void enemyProjectilCollision() {
+        setLeven(-3);
+    }
 
     @Override
-    public void PlayerCollision(Speler speler) {
-        speler.geraaktDoorVijand(sterkte);
+    public void vijandDoe() {
+        //schiet
+    }
+
+    public int getSterkte() {
+        return sterkte;
     }
 }

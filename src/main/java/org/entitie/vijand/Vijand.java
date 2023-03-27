@@ -7,21 +7,26 @@ import com.github.hanyaeger.api.scenes.SceneBorder;
 import com.github.hanyaeger.api.userinput.KeyListener;
 import javafx.scene.input.KeyCode;
 import org.PlayerCollision;
+import org.entitie.projectiel.ProjectielCollision;
+
+import org.entitie.speler.Speler;
 
 import java.util.Set;
 
-public abstract class Vijand extends DynamicCompositeEntity implements SceneBorderCrossingWatcher, Collided, PlayerCollision {
-    protected int health;
+public abstract class Vijand extends DynamicCompositeEntity implements Collided, PlayerCollision, ProjectielCollision {
+    protected int levens;
     protected int sterkte;
 
-    public Vijand(Coordinate2D initialLocation, int health, int sterkte, Size size) {
+    public Vijand(Coordinate2D initialLocation, int levens, int sterkte, Size size) {
         super(initialLocation);
-        this.health = health;
+        this.levens = levens;
         this.sterkte = sterkte;
     }
+    public abstract void vijandDoe();
 
 
-//    protected void setupEntities() {
+
+    //    protected void setupEntities() {
 //
 //    }
 //
