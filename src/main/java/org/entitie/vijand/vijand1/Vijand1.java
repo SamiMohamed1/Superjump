@@ -2,6 +2,7 @@ package org.entitie.vijand.vijand1;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
+import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.Newtonian;
 import com.github.hanyaeger.api.scenes.SceneBorder;
@@ -16,13 +17,20 @@ import org.entitie.vijand.vijand2.Vijand2Sprite;
 
 import java.util.Set;
 
-public class Vijand1 extends Vijand implements KeyListener, Collider {
+public class Vijand1 extends Vijand implements KeyListener, Collider, Collided {
     Speler richting;
+
     private boolean spelerBeweegt = false;
 
-    public Vijand1(Coordinate2D initialLocation,Speler richting, int health, int sterkte) {
-        super(initialLocation, health, sterkte, new Size(50,50));
+    private int levens;
+    private int sterkte;
+
+
+    public Vijand1(Coordinate2D initialLocation,Speler richting, int levens, int sterkte) {
+        super(initialLocation, levens, sterkte, new Size(50,50));
         this.richting = richting;
+        this.levens = levens;
+        this.sterkte = sterkte;
 
     }
     protected void setupEntities() {
@@ -31,6 +39,10 @@ public class Vijand1 extends Vijand implements KeyListener, Collider {
         Vijand1Sprite vijand1Sprite = new Vijand1Sprite(new Coordinate2D(0,0));
         addEntity(vijand1Sprite);
       //  System.out.println(richting.getAnchorLocation());
+//          Hitbox hitbox = new Hitbox(new Coordinate2D(0,0),50,50);
+//          addEntity(hitbox);
+        Vijand1Sprite vijand1Sprite = new Vijand1Sprite(new Coordinate2D(getWidth()/2,200));
+        addEntity(vijand1Sprite);
     }
 
 
@@ -56,6 +68,22 @@ public class Vijand1 extends Vijand implements KeyListener, Collider {
            spelerBeweegt = false;
        }
        vijandDoe();
+
+
+        if (richting.getBoundingBox().getMinX() > getBoundingBox().getMinX()) {
+            setMotion(1, 90);
+        }
+        if (richting.getBoundingBox().getMinX() < getBoundingBox().getMinX()) {
+            setMotion(1, 270);
+        }
+        if (richting.getBoundingBox().getMinY() > getBoundingBox().getMinY()) {
+       //     setMotion(1, 0);
+
+        }
+            if (richting.getBoundingBox().getMinY() > getBoundingBox().getMinY()) {
+           //     setMotion(1, 180);
+
+            }
         }
 
     @Override
@@ -66,7 +94,7 @@ public class Vijand1 extends Vijand implements KeyListener, Collider {
     @Override
     public void PlayerCollision(Speler speler) {
     speler.geraaktDoorVijand(sterkte);
-        System.out.println();
+
         setAnchorLocationX(getBoundingBox().getMinX()- (getWidth()*5));
     }
 
@@ -81,5 +109,12 @@ public class Vijand1 extends Vijand implements KeyListener, Collider {
      setMotion(0.1,90);
       System.out.println("sta stil");
    }
+    public void ProjectilCollision(int spelersterkte) {
+        levens = levens - spelersterkte;
+        System.out.println("levens:" + levens);
+        System.out.println("sterkte:" + spelersterkte);
+        if(levens <= 0){
+            remove();
+        }
     }
 }
