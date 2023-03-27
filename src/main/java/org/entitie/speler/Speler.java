@@ -14,22 +14,23 @@ import org.PlayerCollision;
 
 
 import org.SuperJumpGame;
+import org.entitie.projectiel.ProjectielCollision;
 import org.map.*;
 
 import java.util.Set;
 
 public class Speler extends DynamicSpriteEntity
-        implements  KeyListener, Newtonian, SceneBorderCrossingWatcher, SceneBorderTouchingWatcher, Collided,Collider {
+        implements  KeyListener, Newtonian, SceneBorderCrossingWatcher, SceneBorderTouchingWatcher, Collided,Collider, ProjectielCollision {
     private int levens = 10;
     private int springTeller = 20;
     private int sterkte = 2;
     SuperJumpGame superJumpGame = new SuperJumpGame();
 
-    public Speler(Coordinate2D Location) {
+    public Speler(Coordinate2D Location, SuperJumpGame superJumpGame) {
         super("afbeeldingen/testarcher1.png", Location, new Size(50, 50));
         setFrictionConstant(0.05);
         setGravityConstant(0.25);
-
+        this.superJumpGame = superJumpGame;
     }
 
     @Override
@@ -78,8 +79,8 @@ public class Speler extends DynamicSpriteEntity
 
         }
     }
-    public void setLevens() {
-        levens = levens +3;
+    public void setLevens(int verandering) {
+        levens = levens +verandering;
     }
     public void setSterkte(){
         sterkte = sterkte +3;
@@ -197,6 +198,16 @@ public class Speler extends DynamicSpriteEntity
             }
             return Side.RIGHT;
         }
+    }
+
+    @Override
+    public void spelerProjectilCollision(int spelersterkte) {
+
+    }
+
+    @Override
+    public void enemyProjectilCollision() {
+    levens = levens -3;
     }
 }
 

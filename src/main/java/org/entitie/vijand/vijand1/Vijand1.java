@@ -9,6 +9,7 @@ import com.github.hanyaeger.api.scenes.SceneBorder;
 import com.github.hanyaeger.api.userinput.KeyListener;
 import javafx.scene.input.KeyCode;
 import org.entitie.Hitbox;
+import org.entitie.projectiel.ProjectielCollision;
 import org.entitie.speler.Speler;
 import org.entitie.vijand.Vijand;
 import org.entitie.vijand.baas.BaasSprite;
@@ -17,7 +18,7 @@ import org.entitie.vijand.vijand2.Vijand2Sprite;
 
 import java.util.Set;
 
-public class Vijand1 extends Vijand implements KeyListener, Collider, Collided {
+public class Vijand1 extends Vijand implements KeyListener, Collider, Collided, ProjectielCollision {
     Speler richting;
 
     private boolean spelerBeweegt = false;
@@ -111,13 +112,19 @@ public class Vijand1 extends Vijand implements KeyListener, Collider, Collided {
         }
     }
 
-    public void ProjectilCollision(int spelersterkte) {
+    @Override
+    public void spelerProjectilCollision(int spelersterkte) {
         levens = levens - spelersterkte;
         System.out.println("levens:" + levens);
         System.out.println("sterkte:" + spelersterkte);
         if (levens <= 0) {
             remove();
         }
+    }
+
+    @Override
+    public void enemyProjectilCollision() {
+
     }
 }
 

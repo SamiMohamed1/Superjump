@@ -10,27 +10,33 @@ import com.github.hanyaeger.api.scenes.SceneBorder;
 
 public class SpelerProjectiel extends DynamicSpriteEntity implements Collided, Collider, ProjectielCollision, SceneBorderTouchingWatcher {
 
-    private  int sterkte;
+    private int sterkte;
 
     public SpelerProjectiel(Coordinate2D initialLocation, int directie, int sterkte) {
-        super("afbeeldingen/slash.png", initialLocation, new Size(50,50));
-        setMotion(3,directie);
+        super("afbeeldingen/slash.png", initialLocation, new Size(50, 50));
+        setMotion(3, directie);
         this.sterkte = sterkte;
 
     }
 
     @Override
     public void onCollision(Collider collider) {
-        if(collider instanceof ProjectielCollision projectielCollision){
-            projectielCollision.ProjectilCollision(sterkte);
+        if (collider instanceof ProjectielCollision spelerProjectiel) {
+            spelerProjectiel.spelerProjectilCollision(sterkte);
             remove();
         }
     }
 
     @Override
-    public void ProjectilCollision(int spelersterkte) {
+    public void spelerProjectilCollision(int spelersterkte) {
         remove();
     }
+
+    @Override
+    public void enemyProjectilCollision() {
+
+    }
+
     @Override
     public void notifyBoundaryTouching(SceneBorder sceneBorder) {
         remove();

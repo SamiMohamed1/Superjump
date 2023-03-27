@@ -77,12 +77,17 @@ public class Vijand2 extends Vijand implements PlayerCollision,Collider, Project
     }
 
     @Override
-    public void ProjectilCollision(int spelersterkte) {
+    public void spelerProjectilCollision(int spelersterkte) {
         levens = levens - spelersterkte;
         System.out.println("levens:" + levens);
         System.out.println("sterkte:" + spelersterkte);
         if (levens <= 0) {
             remove();
         }
+    }
+
+    @Override
+    public void enemyProjectilCollision() {
+
     }
 }

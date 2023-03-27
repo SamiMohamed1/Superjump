@@ -18,14 +18,18 @@ public class EnemyProjectiel extends DynamicSpriteEntity implements Collided, Co
 
     @Override
     public void onCollision(Collider collider) {
-        if(collider instanceof ProjectielCollision projectielCollision){
-            projectielCollision.ProjectilCollision(sterkte);
+        if(collider instanceof ProjectielCollision enemyProjectiel){
+            enemyProjectiel.enemyProjectilCollision();
             remove();
         }
     }
     @Override
-    public void ProjectilCollision(int spelersterkte) {
-        remove();
+    public void spelerProjectilCollision(int spelersterkte) {
+    }
+
+    @Override
+    public void enemyProjectilCollision() {
+
     }
 
     @Override

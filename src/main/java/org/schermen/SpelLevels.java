@@ -33,7 +33,7 @@ public class SpelLevels extends DynamicScene implements MouseButtonPressedListen
 
     @Override
     public void setupEntities() {
-        speler = new Speler(new Coordinate2D(getWidth()/2,getHeight()/2));
+        speler = new Speler(new Coordinate2D(getWidth()/2,getHeight()/2), superJumpGame);
 
         addEntity(speler);
          baas = new Baas((new Coordinate2D(getWidth()/2, 0)),10,10);

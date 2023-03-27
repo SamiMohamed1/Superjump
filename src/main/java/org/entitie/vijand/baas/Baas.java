@@ -40,10 +40,17 @@ public class Baas extends Vijand implements PlayerCollision {
 //        speler.geraaktDoorVijand(speler.set);
 
     }
+    public void setLeven(int verandering){
+        levens = levens + verandering;
+    }
+    @Override
+    public void spelerProjectilCollision(int spelersterkte) {
+
+    }
 
     @Override
-    public void ProjectilCollision(int spelersterkte) {
-
+    public void enemyProjectilCollision() {
+        setLeven(-3);
     }
 
     @Override
