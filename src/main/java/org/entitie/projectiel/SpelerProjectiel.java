@@ -7,6 +7,7 @@ import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.SceneBorderTouchingWatcher;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.scenes.SceneBorder;
+import org.entitie.speler.Speler;
 
 public class SpelerProjectiel extends DynamicSpriteEntity implements Collided, Collider, ProjectielCollision, SceneBorderTouchingWatcher {
 
@@ -21,7 +22,7 @@ public class SpelerProjectiel extends DynamicSpriteEntity implements Collided, C
 
     @Override
     public void onCollision(Collider collider) {
-        if (collider instanceof ProjectielCollision spelerProjectiel) {
+        if (collider instanceof ProjectielCollision spelerProjectiel && !(collider instanceof Speler)){
             spelerProjectiel.spelerProjectilCollision(sterkte);
             remove();
         }
