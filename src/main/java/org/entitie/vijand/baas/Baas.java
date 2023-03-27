@@ -46,4 +46,9 @@ public class Baas extends Vijand implements PlayerCollision {
     public void ProjectilCollision(int spelersterkte) {
 
     }
+
+    @Override
+    public void vijandDoe() {
+        //schiet
+    }
 }

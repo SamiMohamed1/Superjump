@@ -40,7 +40,7 @@ public class SpelLevels extends DynamicScene implements MouseButtonPressedListen
         addEntity(baas);
         BewegendPlatform bewegendPlatform = new BewegendPlatform("afbeeldingen/Ijzer.png", new Coordinate2D(100,200));
         addEntity(bewegendPlatform);
-        Vijand2 vijand2 = new Vijand2((new Coordinate2D(100,100)),10,10);
+        Vijand2 vijand2 = new Vijand2((new Coordinate2D(100,350)),10,10);
         addEntity(vijand2);
         Vijand1 vijand1 = new Vijand1((new Coordinate2D(100,100)),speler,4,10);
         addEntity(vijand1);

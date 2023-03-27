@@ -15,6 +15,6 @@ import javafx.scene.paint.Color;
             this.height = height;
             setWidth(width);
             setHeight(height);
-            setFill(Color.TRANSPARENT);
+            setFill(Color.GREEN);
         }
     }

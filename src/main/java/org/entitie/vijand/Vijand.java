@@ -22,6 +22,7 @@ public abstract class Vijand extends DynamicCompositeEntity implements SceneBord
         this.levens = levens;
         this.sterkte = sterkte;
     }
+    public abstract void vijandDoe();
 
 
 
