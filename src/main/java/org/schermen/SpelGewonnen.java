@@ -24,7 +24,7 @@ public class SpelGewonnen extends StaticScene {
     public void setupEntities() {
         var gewonnentext = new TextEntity(new Coordinate2D(getWidth()/2, 50), "GEWONNEN");
         gewonnentext.setAnchorPoint(AnchorPoint.CENTER_CENTER);
-        gewonnentext.setFill(Color.BLACK);
+        gewonnentext.setFill(Color.GOLD);
         addEntity(gewonnentext);
         StartKnop herstartKnop = new StartKnop(new Coordinate2D(getWidth()/2, 100), superJumpGame);
         addEntity(herstartKnop);
