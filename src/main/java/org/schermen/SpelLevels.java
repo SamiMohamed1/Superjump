@@ -27,7 +27,7 @@ public class SpelLevels extends DynamicScene implements MouseButtonPressedListen
 
     @Override
     public void setupScene() {
-//    setBackgroundImage("afbeeldingen/jungle2.png");
+   setBackgroundImage("afbeeldingen/jungle2.png");
 
     }
 
