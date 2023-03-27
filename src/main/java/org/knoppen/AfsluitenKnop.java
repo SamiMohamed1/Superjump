@@ -5,29 +5,32 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 import com.github.hanyaeger.api.userinput.MouseEnterListener;
+import com.github.hanyaeger.api.userinput.MouseExitListener;
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import org.SuperJumpGame;
 
-public class Knoppen extends TextEntity implements MouseButtonPressedListener, MouseEnterListener {
-    protected SuperJumpGame superJumpGame;
-    public Knoppen(Coordinate2D initialLocation, SuperJumpGame superJumpGame) {
-        super(initialLocation,"Starten");
+public class AfsluitenKnop extends TextEntity implements MouseButtonPressedListener, MouseEnterListener {
+    private SuperJumpGame superJumpGame;
+    public AfsluitenKnop(Coordinate2D initialLocation, SuperJumpGame superJumpGame) {
+        super(initialLocation,"stoppen");
+        setFill(Color.INDIANRED);
+        setFont(Font.font("Roboto", FontWeight.BOLD, 20));
         this.superJumpGame = superJumpGame;
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
-        setFill(Color.BLACK);
-    }
 
+    }
     @Override
     public void onMouseButtonPressed(MouseButton mouseButton, Coordinate2D coordinate2D) {
-        superJumpGame.setActiveScene(1);
-        System.out.println(22222);
+        superJumpGame.quit();
     }
 
     @Override
     public void onMouseEntered() {
-        setFill(Color.VIOLET);
+        setFill(Color.INDIANRED);
         setCursor(Cursor.HAND);
     }
 }
