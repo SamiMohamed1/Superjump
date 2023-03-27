@@ -7,7 +7,6 @@ import com.github.hanyaeger.api.scenes.TileMapContainer;
 import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 import javafx.scene.input.MouseButton;
 import org.SuperJumpGame;
-import org.entitie.projectiel.Projectiel;
 import org.entitie.projectiel.ProjectielSpawner;
 import org.entitie.speler.Speler;
 import org.entitie.vijand.baas.Baas;
@@ -20,6 +19,7 @@ import org.map.Map;
 public class SpelLevels extends DynamicScene implements MouseButtonPressedListener, TileMapContainer, EntitySpawnerContainer {
     private SuperJumpGame superJumpGame;
     private Speler speler;
+    private Baas baas;
 
     public SpelLevels(SuperJumpGame superJumpGame){
         this.superJumpGame = superJumpGame;
@@ -36,7 +36,7 @@ public class SpelLevels extends DynamicScene implements MouseButtonPressedListen
         speler = new Speler(new Coordinate2D(getWidth()/2,getHeight()/2));
 
         addEntity(speler);
-        Baas baas = new Baas((new Coordinate2D(getWidth()/2, 0)),10,10);
+         baas = new Baas((new Coordinate2D(getWidth()/2, 0)),10,10);
         addEntity(baas);
         BewegendPlatform bewegendPlatform = new BewegendPlatform("afbeeldingen/Ijzer.png", new Coordinate2D(100,200));
         addEntity(bewegendPlatform);
@@ -61,6 +61,7 @@ Map map = new Map();
     @Override
     public void setupEntitySpawners() {
 
-      addEntitySpawner(new ProjectielSpawner(50,50,180, speler));
+      addEntitySpawner(new ProjectielSpawner(0,0,180, speler,baas,"speler"));
+      addEntitySpawner(new ProjectielSpawner(getWidth()/2,0,0d,speler,baas,"baas"));
     }
 }
