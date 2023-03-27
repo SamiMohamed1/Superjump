@@ -13,7 +13,7 @@ import org.entitie.speler.Speler;
 
 import java.util.Set;
 
-public abstract class Vijand extends DynamicCompositeEntity implements SceneBorderCrossingWatcher, Collided, PlayerCollision, ProjectielCollision {
+public abstract class Vijand extends DynamicCompositeEntity implements Collided, PlayerCollision, ProjectielCollision {
     protected int levens;
     protected int sterkte;
 

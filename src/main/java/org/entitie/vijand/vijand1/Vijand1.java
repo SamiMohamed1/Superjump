@@ -57,11 +57,6 @@ public class Vijand1 extends Vijand implements KeyListener, Collider, UpdateExpo
     }
 
     @Override
-    public void notifyBoundaryCrossing(SceneBorder sceneBorder) {
-
-    }
-
-    @Override
     public void PlayerCollision(Speler speler) {
     speler.geraaktDoorVijand(sterkte);
         System.out.println();
