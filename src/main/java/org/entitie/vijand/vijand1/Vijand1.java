@@ -2,9 +2,8 @@ package org.entitie.vijand.vijand1;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
-import com.github.hanyaeger.api.entities.Collided;
+import com.github.hanyaeger.api.UpdateExposer;
 import com.github.hanyaeger.api.entities.Collider;
-import com.github.hanyaeger.api.entities.Newtonian;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 import com.github.hanyaeger.api.userinput.KeyListener;
 import javafx.scene.input.KeyCode;
@@ -12,13 +11,10 @@ import org.entitie.Hitbox;
 import org.entitie.projectiel.ProjectielCollision;
 import org.entitie.speler.Speler;
 import org.entitie.vijand.Vijand;
-import org.entitie.vijand.baas.BaasSprite;
-import org.entitie.vijand.vijand2.Vijand2;
-import org.entitie.vijand.vijand2.Vijand2Sprite;
 
 import java.util.Set;
 
-public class Vijand1 extends Vijand implements KeyListener, Collider, Collided, ProjectielCollision {
+public class Vijand1 extends Vijand implements KeyListener, Collider, UpdateExposer, ProjectielCollision {
     Speler richting;
 
     private boolean spelerBeweegt = false;
@@ -107,13 +103,14 @@ public class Vijand1 extends Vijand implements KeyListener, Collider, Collided, 
     @Override
     public void vijandDoe() {
         if (spelerBeweegt == false) {
-            setMotion(0.1, 90);
-            System.out.println("sta stil");
+            if (getDirection() != 0.0) {
+
+                setMotion(1, getDirection());
+            }
         }
     }
-
-    @Override
-    public void spelerProjectilCollision(int spelersterkte) {
+@Override
+    public void ProjectilCollision(int spelersterkte) {
         levens = levens - spelersterkte;
         System.out.println("levens:" + levens);
         System.out.println("sterkte:" + spelersterkte);
@@ -123,8 +120,17 @@ public class Vijand1 extends Vijand implements KeyListener, Collider, Collided, 
     }
 
     @Override
+    public void spelerProjectilCollision(int spelersterkte) {
+        
+    }
+
+    @Override
     public void enemyProjectilCollision() {
 
+    }
+    @Override
+    public void explicitUpdate(long l) {
+        vijandDoe();
     }
 }
 

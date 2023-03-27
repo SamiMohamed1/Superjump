@@ -2,7 +2,9 @@ package org.entitie.vijand.vijand2;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
+import com.github.hanyaeger.api.UpdateExposer;
 import com.github.hanyaeger.api.entities.Collider;
+import com.github.hanyaeger.api.entities.SceneBorderCrossingWatcher;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 import org.PlayerCollision;
 import org.entitie.Hitbox;
@@ -12,7 +14,7 @@ import org.entitie.vijand.Vijand;
 import org.entitie.vijand.vijand1.Vijand1Sprite;
 
 
-public class Vijand2 extends Vijand implements PlayerCollision,Collider, ProjectielCollision {
+public class Vijand2 extends Vijand implements PlayerCollision,Collider, ProjectielCollision,UpdateExposer {
     private int bewegingsRichting;
     public Vijand2(Coordinate2D initialLocation, int levens,int sterkte) {
         super(initialLocation, levens, sterkte,  new Size(50,50));
@@ -77,7 +79,7 @@ public class Vijand2 extends Vijand implements PlayerCollision,Collider, Project
     }
 
     @Override
-    public void spelerProjectilCollision(int spelersterkte) {
+    public void ProjectilCollision(int spelersterkte) {
         levens = levens - spelersterkte;
         System.out.println("levens:" + levens);
         System.out.println("sterkte:" + spelersterkte);
@@ -87,7 +89,18 @@ public class Vijand2 extends Vijand implements PlayerCollision,Collider, Project
     }
 
     @Override
+    public void spelerProjectilCollision(int spelersterkte) {
+
+    }
+
+    @Override
     public void enemyProjectilCollision() {
 
     }
+    @Override
+    public void explicitUpdate(long l) {
+        vijandDoe();
+    }
+
+
 }
