@@ -2,6 +2,7 @@ package org.entitie.vijand.vijand1;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
+import com.github.hanyaeger.api.UpdateExposer;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.Newtonian;
 import com.github.hanyaeger.api.scenes.SceneBorder;
@@ -16,7 +17,7 @@ import org.entitie.vijand.vijand2.Vijand2Sprite;
 
 import java.util.Set;
 
-public class Vijand1 extends Vijand implements KeyListener, Collider {
+public class Vijand1 extends Vijand implements KeyListener, Collider, UpdateExposer {
     Speler richting;
     private boolean spelerBeweegt = false;
 
@@ -43,25 +44,11 @@ public class Vijand1 extends Vijand implements KeyListener, Collider {
            if (richting.getBoundingBox().getMinX() < getBoundingBox().getMinX()) {
                setMotion(3, 270);
            }
-           if (richting.getBoundingBox().getMinY() > getBoundingBox().getMinY()) {
-               //     setMotion(1, 0);
-               System.out.println(99);
-           }
-           if (richting.getBoundingBox().getMinY() > getBoundingBox().getMinY()) {
-               //     setMotion(1, 180);
-               System.out.println(0);
-           }
            spelerBeweegt = true;
        } else {
            spelerBeweegt = false;
        }
-       vijandDoe();
         }
-
-    @Override
-    public void notifyBoundaryCrossing(SceneBorder sceneBorder) {
-
-    }
 
     @Override
     public void PlayerCollision(Speler speler) {
@@ -78,8 +65,16 @@ public class Vijand1 extends Vijand implements KeyListener, Collider {
     @Override
     public void vijandDoe() {
   if (spelerBeweegt == false){
-     setMotion(0.1,90);
-      System.out.println("sta stil");
+      if(getDirection() != 0.0) {
+
+          setMotion(1, getDirection());
+      }
    }
+    }
+
+
+    @Override
+    public void explicitUpdate(long l) {
+        vijandDoe();
     }
 }

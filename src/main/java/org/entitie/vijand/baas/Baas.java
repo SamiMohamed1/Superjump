@@ -31,12 +31,6 @@ public class Baas extends Vijand implements PlayerCollision {
     }
 
     @Override
-    public void notifyBoundaryCrossing(SceneBorder sceneBorder) {
-
-    }
-
-
-    @Override
     public void PlayerCollision(Speler speler) {
         speler.geraaktDoorVijand(sterkte);
     }

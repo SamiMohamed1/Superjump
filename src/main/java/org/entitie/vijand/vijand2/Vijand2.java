@@ -2,7 +2,9 @@ package org.entitie.vijand.vijand2;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
+import com.github.hanyaeger.api.UpdateExposer;
 import com.github.hanyaeger.api.entities.Collider;
+import com.github.hanyaeger.api.entities.SceneBorderCrossingWatcher;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 import org.PlayerCollision;
 import org.entitie.Hitbox;
@@ -10,7 +12,7 @@ import org.entitie.speler.Speler;
 import org.entitie.vijand.Vijand;
 import org.entitie.vijand.vijand1.Vijand1Sprite;
 
-public class Vijand2 extends Vijand implements Collider {
+public class Vijand2 extends Vijand implements SceneBorderCrossingWatcher, Collider, UpdateExposer {
 
     private int bewegingsRichting = 0;
     public Vijand2(Coordinate2D initialLocation, int health,int sterkte) {
@@ -38,7 +40,6 @@ public class Vijand2 extends Vijand implements Collider {
             case RIGHT:
                 bewegingsRichting = 1;
         }
-        vijandDoe();
     }
     public void beweeg(){
         if (bewegingsRichting == 0){
@@ -65,11 +66,15 @@ public class Vijand2 extends Vijand implements Collider {
 
                 break;
         }
-        vijandDoe();
     }
 
     @Override
     public void vijandDoe() {
      beweeg();
+    }
+
+    @Override
+    public void explicitUpdate(long l) {
+        vijandDoe();
     }
 }

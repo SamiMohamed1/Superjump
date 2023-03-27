@@ -10,7 +10,7 @@ import org.PlayerCollision;
 
 import java.util.Set;
 
-public abstract class Vijand extends DynamicCompositeEntity implements SceneBorderCrossingWatcher, Collided, PlayerCollision {
+public abstract class Vijand extends DynamicCompositeEntity implements Collided, PlayerCollision {
     protected int health;
     protected int sterkte;
 
