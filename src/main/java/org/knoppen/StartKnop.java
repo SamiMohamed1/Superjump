@@ -25,7 +25,6 @@ public class StartKnop extends TextEntity implements MouseButtonPressedListener,
     @Override
     public void onMouseButtonPressed(MouseButton mouseButton, Coordinate2D coordinate2D) {
         superJumpGame.setActiveScene(1);
-        System.out.println(22222);
     }
 
     @Override

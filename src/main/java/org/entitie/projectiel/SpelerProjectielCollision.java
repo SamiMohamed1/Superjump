@@ -1,8 +1,7 @@
 package org.entitie.projectiel;
 
-public interface ProjectielCollision {
+public interface SpelerProjectielCollision {
 
 
     public void spelerProjectilCollision(int spelersterkte);
-    public void enemyProjectilCollision();
 }

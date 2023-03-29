@@ -2,12 +2,10 @@ package org.entitie.items;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
-import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
-import org.PlayerCollision;
 import org.entitie.speler.Speler;
 
-public class SnelheidBoost extends Item  {
+public class SnelheidBoost extends Item {
 
     public SnelheidBoost(Coordinate2D initialLocation, Size size, String resource) {
         super(initialLocation, size, resource);
@@ -15,13 +13,14 @@ public class SnelheidBoost extends Item  {
 
     @Override
     public void onCollision(Collider collider) {
-        if(collider instanceof Speler){
-            remove();
-        }
+
     }
 
     @Override
     public void PlayerCollision(Speler speler) {
-        speler.setSnelheid();
+        speler.setSnelheid(3);
+        remove();
     }
+
 }
+

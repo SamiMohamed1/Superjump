@@ -29,14 +29,13 @@ public class ProjectielSpawner extends EntitySpawner {
     public void spawnEntities() {
         if (type == "speler") {
             spawn(new SpelerProjectiel(new Coordinate2D(speler.getBoundingBox().getMinX(), speler.getBoundingBox().getMinY() ), (int) richting, speler.getSterkte()));
-            System.out.println("spatie");
         } else if (type == "baas") {
-            spawn(new EnemyProjectiel(new Coordinate2D(baas.getBoundingBox().getCenterX(),baas.getBoundingBox().getCenterY()), randomRichting(),speler.getSterkte()));
+            spawn(new EnemyProjectiel(new Coordinate2D(baas.getBoundingBox().getCenterX(),baas.getBoundingBox().getCenterY()), randomRichting(),baas.getSterkte()));
         }
     }
     public int randomRichting(){
         richting = new Random().nextInt(-70,70);
-        System.out.println(richting);
+
         return (int) richting;
     }
 

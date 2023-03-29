@@ -3,17 +3,11 @@ package org.entitie.vijand;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.*;
-import com.github.hanyaeger.api.scenes.SceneBorder;
-import com.github.hanyaeger.api.userinput.KeyListener;
-import javafx.scene.input.KeyCode;
-import org.PlayerCollision;
-import org.entitie.projectiel.ProjectielCollision;
+import org.entitie.PlayerCollision;
 
-import org.entitie.speler.Speler;
+import org.entitie.projectiel.SpelerProjectielCollision;
 
-import java.util.Set;
-
-public abstract class Vijand extends DynamicCompositeEntity implements Collided, PlayerCollision, ProjectielCollision {
+public abstract class Vijand extends DynamicCompositeEntity implements Collided, PlayerCollision, SpelerProjectielCollision {
     protected int levens;
     protected int sterkte;
 
@@ -26,28 +20,5 @@ public abstract class Vijand extends DynamicCompositeEntity implements Collided,
 
 
 
-    //    protected void setupEntities() {
-//
-//    }
-//
-//    @Override
-//    public void notifyBoundaryCrossing(SceneBorder border) {
-//        switch (border) {
-//            case LEFT:
-//                setAnchorLocationX(getSceneWidth() - getWidth() - 10);
-//                break;
-//            case RIGHT:
-//                setAnchorLocationX(10);
-//        }
-//    }
-//
-//    @Override
-//    public void onCollision(Collider collider) {
-//
-//    }
-//
-//    @Override
-//    public void onPressedKeysChange(Set<KeyCode> set) {
-//
-//    }
+
 }

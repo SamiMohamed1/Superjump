@@ -2,9 +2,7 @@ package org.entitie.items;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
-import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
-import org.PlayerCollision;
 import org.entitie.speler.Speler;
 
 public class StertkeBoost extends Item {

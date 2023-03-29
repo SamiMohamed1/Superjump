@@ -4,7 +4,7 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
-import org.PlayerCollision;
+import org.entitie.PlayerCollision;
 import org.SuperJumpGame;
 import org.entitie.Hitbox;
 import org.entitie.speler.Speler;
@@ -37,21 +37,17 @@ public class Baas extends Vijand implements PlayerCollision, Collided, Collider 
     }
     @Override
     public void spelerProjectilCollision(int spelersterkte) {
-        levens = levens - spelersterkte;
+        setLeven(-3);
         if (levens <= 0) {
             remove();
             superJumpGame.setActiveScene(3);
         }
     }
 
-    @Override
-    public void enemyProjectilCollision() {
 
-    }
 
     @Override
     public void vijandDoe() {
-        //schiet
     }
 
     public int getSterkte() {

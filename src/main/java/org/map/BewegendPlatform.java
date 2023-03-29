@@ -6,7 +6,7 @@ import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.SceneBorderTouchingWatcher;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.scenes.SceneBorder;
-import org.PlayerCollision;
+import org.entitie.PlayerCollision;
 
 import org.entitie.speler.Speler;
 

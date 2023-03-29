@@ -10,8 +10,8 @@ import org.SuperJumpGame;
 import org.entitie.projectiel.ProjectielSpawner;
 import org.entitie.speler.Speler;
 import org.entitie.vijand.baas.Baas;
-import org.entitie.vijand.vijand1.Vijand1;
-import org.entitie.vijand.vijand2.Vijand2;
+import org.entitie.vijand.VijandVolgend.VijandVolgend;
+import org.entitie.vijand.VijandHeenEnWeer.VijandHeenEnWeer;
 import org.map.BewegendPlatform;
 import org.map.Map;
 
@@ -34,15 +34,14 @@ public class SpelLevels extends DynamicScene implements MouseButtonPressedListen
     @Override
     public void setupEntities() {
         speler = new Speler(new Coordinate2D(getWidth()/2,getHeight()/2), superJumpGame);
-
         addEntity(speler);
-         baas = new Baas((new Coordinate2D(getWidth()/2, 0)),10,100,superJumpGame);
+         baas = new Baas((new Coordinate2D(getWidth()/2, 0)),10,4,superJumpGame);
         addEntity(baas);
         BewegendPlatform bewegendPlatform = new BewegendPlatform("afbeeldingen/Ijzer.png", new Coordinate2D(100,200));
         addEntity(bewegendPlatform);
-        Vijand2 vijand2 = new Vijand2((new Coordinate2D(100,350)),10,10);
+        VijandHeenEnWeer vijand2 = new VijandHeenEnWeer((new Coordinate2D(100,350)),10,9);
         addEntity(vijand2);
-        Vijand1 vijand1 = new Vijand1((new Coordinate2D(100,100)),speler,4,10);
+        VijandVolgend vijand1 = new VijandVolgend((new Coordinate2D(100,100)),speler,10,9);
         addEntity(vijand1);
 
     }
@@ -61,7 +60,7 @@ Map map = new Map();
     @Override
     public void setupEntitySpawners() {
 
-      addEntitySpawner(new ProjectielSpawner(0,0,180d,speler,baas,"speler",200));
+      addEntitySpawner(new ProjectielSpawner(0,0,180d,speler,baas,"speler",10000));
       addEntitySpawner(new ProjectielSpawner(getWidth()/2,0,0,speler,baas,"baas",700));
 
     }

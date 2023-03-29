@@ -10,17 +10,17 @@ import com.github.hanyaeger.api.userinput.KeyListener;
 import javafx.geometry.Bounds;
 import javafx.geometry.Side;
 import javafx.scene.input.KeyCode;
-import org.PlayerCollision;
+import org.entitie.PlayerCollision;
 
 
 import org.SuperJumpGame;
-import org.entitie.projectiel.ProjectielCollision;
+import org.entitie.projectiel.VijandProjectielCollision;
 import org.map.*;
 
 import java.util.Set;
 
 public class Speler extends DynamicSpriteEntity
-        implements  KeyListener, Newtonian, SceneBorderCrossingWatcher, SceneBorderTouchingWatcher, Collided,Collider, ProjectielCollision {
+        implements  KeyListener, Newtonian, SceneBorderCrossingWatcher, SceneBorderTouchingWatcher, Collided,Collider, VijandProjectielCollision {
     private int levens = 10;
     private int springTeller = 20;
     private int sterkte = 2;
@@ -85,14 +85,9 @@ public class Speler extends DynamicSpriteEntity
     public void setSterkte(){
         sterkte = sterkte +3;
     }
-    public void setSnelheid() {
-        setSpeed(getSpeed() +3);
+    public void setSnelheid(int verandering) {
+        setSpeed(getSpeed() +verandering);
     }
-//    public void geraaktDoorVijand(int vijandSterkte){
-//        levens = levens - vijandSterkte;
-//
-//      //  System.out.println(levens);
-//    }
     public int getSterkte(){
 
         return sterkte;
@@ -106,7 +101,6 @@ public class Speler extends DynamicSpriteEntity
         if (collidingObject instanceof Platform) {
             if (collidingObject instanceof Grond) {
                 setAnchorLocationY(collidingObject.getBoundingBox().getMinY() - 50);
-
                 springTeller = 2;
             } else {
                 switch (getCollisionSide(collidingObject)) {
@@ -116,11 +110,9 @@ public class Speler extends DynamicSpriteEntity
                             setSpeed(getSpeed() + 0.1);
                             setMotion(getSpeed(), getDirection());
                         }
-
                         springTeller = 2;
                         break;
                     case LEFT:
-
                         nullifySpeedInDirection(90d);
                         break;
                     case RIGHT:
@@ -152,7 +144,9 @@ public class Speler extends DynamicSpriteEntity
                     break;
             }
         }
-        if(levens <= 0){superJumpGame.setActiveScene(2);}
+        if(levens <= 0){
+            superJumpGame.setActiveScene(2);
+        }
     }
 
 
@@ -203,14 +197,13 @@ public class Speler extends DynamicSpriteEntity
 
 
 
-    @Override
-    public void spelerProjectilCollision(int spelersterkte) {
 
-    }
 
     @Override
-    public void enemyProjectilCollision() {
+    public void vijandProjectielCollision() {
         setLevens(-3);
     }
+
+
 }
 

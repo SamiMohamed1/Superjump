@@ -1,4 +1,4 @@
-package org.entitie.vijand.vijand1;
+package org.entitie.vijand.VijandVolgend;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
@@ -9,13 +9,12 @@ import com.github.hanyaeger.api.scenes.SceneBorder;
 import com.github.hanyaeger.api.userinput.KeyListener;
 import javafx.scene.input.KeyCode;
 import org.entitie.Hitbox;
-import org.entitie.projectiel.ProjectielCollision;
 import org.entitie.speler.Speler;
 import org.entitie.vijand.Vijand;
 
 import java.util.Set;
 
-public class Vijand1 extends Vijand implements KeyListener, Collider, UpdateExposer, ProjectielCollision, SceneBorderCrossingWatcher {
+public class VijandVolgend extends Vijand implements KeyListener, Collider, UpdateExposer, SceneBorderCrossingWatcher {
     Speler richting;
 
     private boolean spelerBeweegt = false;
@@ -24,7 +23,7 @@ public class Vijand1 extends Vijand implements KeyListener, Collider, UpdateExpo
     private int sterkte;
 
 
-    public Vijand1(Coordinate2D initialLocation, Speler richting, int levens, int sterkte) {
+    public VijandVolgend(Coordinate2D initialLocation, Speler richting, int levens, int sterkte) {
         super(initialLocation, levens, sterkte, new Size(50, 50));
         this.richting = richting;
         this.levens = levens;
@@ -35,11 +34,8 @@ public class Vijand1 extends Vijand implements KeyListener, Collider, UpdateExpo
     protected void setupEntities() {
         Hitbox hitbox = new Hitbox(new Coordinate2D(0, 0), 50, 50);
         addEntity(hitbox);
-        Vijand1Sprite vijand1Sprite = new Vijand1Sprite(new Coordinate2D(0, 0));
+        VijandVolgendSprite vijand1Sprite = new VijandVolgendSprite(new Coordinate2D(0, 0));
         addEntity(vijand1Sprite);
-        //  System.out.println(richting.getAnchorLocation());
-//          Hitbox hitbox = new Hitbox(new Coordinate2D(0,0),50,50);
-//          addEntity(hitbox);
 
     }
 
@@ -54,33 +50,12 @@ public class Vijand1 extends Vijand implements KeyListener, Collider, UpdateExpo
                 setMotion(3, 270);
             }
             if (richting.getBoundingBox().getMinY() > getBoundingBox().getMinY()) {
-                //     setMotion(1, 0);
-                System.out.println(99);
             }
             if (richting.getBoundingBox().getMinY() > getBoundingBox().getMinY()) {
-                //     setMotion(1, 180);
-                System.out.println(0);
             }
             spelerBeweegt = true;
         } else {
             spelerBeweegt = false;
-        }
-        vijandDoe();
-
-
-        if (richting.getBoundingBox().getMinX() > getBoundingBox().getMinX()) {
-            setMotion(1, 90);
-        }
-        if (richting.getBoundingBox().getMinX() < getBoundingBox().getMinX()) {
-            setMotion(1, 270);
-        }
-        if (richting.getBoundingBox().getMinY() > getBoundingBox().getMinY()) {
-            //     setMotion(1, 0);
-
-        }
-        if (richting.getBoundingBox().getMinY() > getBoundingBox().getMinY()) {
-            //     setMotion(1, 180);
-
         }
     }
 
@@ -114,17 +89,12 @@ public class Vijand1 extends Vijand implements KeyListener, Collider, UpdateExpo
     @Override
     public void spelerProjectilCollision(int spelersterkte) {
         levens = levens - spelersterkte;
-        System.out.println("levens:" + levens);
-        System.out.println("sterkte:" + spelersterkte);
         if (levens <= 0) {
             remove();
         }
     }
 
-    @Override
-    public void enemyProjectilCollision() {
 
-    }
     @Override
     public void explicitUpdate(long l) {
         vijandDoe();

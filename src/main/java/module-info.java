@@ -6,6 +6,7 @@ module superjump {
     exports org;
     opens afbeeldingen;
     exports org.entitie.items;
+    exports org.entitie;
 
 
 }
