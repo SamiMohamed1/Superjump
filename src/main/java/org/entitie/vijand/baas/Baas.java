@@ -30,7 +30,7 @@ public class Baas extends Vijand implements PlayerCollision, Collided, Collider 
 
     @Override
     public void PlayerCollision(Speler speler) {
-    speler.setLevens(-100);
+    speler.setLevens(-sterkte*100);
     }
     public void setLeven(int verandering){
         levens = levens + verandering;
