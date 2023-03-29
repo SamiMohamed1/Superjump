@@ -88,11 +88,11 @@ public class Speler extends DynamicSpriteEntity
     public void setSnelheid() {
         setSpeed(getSpeed() +3);
     }
-    public void geraaktDoorVijand(int vijandSterkte){
-        levens = levens - vijandSterkte;
-
-      //  System.out.println(levens);
-    }
+//    public void geraaktDoorVijand(int vijandSterkte){
+//        levens = levens - vijandSterkte;
+//
+//      //  System.out.println(levens);
+//    }
     public int getSterkte(){
 
         return sterkte;

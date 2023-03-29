@@ -90,7 +90,7 @@ public class Vijand1 extends Vijand implements KeyListener, Collider, UpdateExpo
 
     @Override
     public void PlayerCollision(Speler speler) {
-        speler.geraaktDoorVijand(sterkte);
+        speler.setLevens(-sterkte);
 
         setAnchorLocationX(getBoundingBox().getMinX() - (getWidth() * 5));
     }

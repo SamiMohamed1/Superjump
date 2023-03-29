@@ -54,8 +54,7 @@ public class Vijand2 extends Vijand implements PlayerCollision,Collider, Project
 
     @Override
     public void PlayerCollision(Speler speler) {
-        System.out.println(1234);
-        speler.geraaktDoorVijand(sterkte);
+        speler.setLevens(-sterkte);
        // setAnchorLocationX(getBoundingBox().getMinX()- (getWidth()*5));
         switch(bewegingsRichting) {
             case 0:
