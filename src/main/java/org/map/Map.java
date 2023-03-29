@@ -1,13 +1,9 @@
 package org.map;
 
 import com.github.hanyaeger.api.scenes.TileMap;
-import com.github.hanyaeger.api.scenes.TileMapContainer;
-import com.google.inject.Injector;
-import org.entitie.items.Schild;
+import org.entitie.items.Medkit;
 import org.entitie.items.SnelheidBoost;
 import org.entitie.items.StertkeBoost;
-
-import java.util.List;
 
 public class Map extends TileMap{
     @Override
@@ -16,7 +12,7 @@ public class Map extends TileMap{
         addEntity(2,Ijs.class, "afbeeldingen/ijs.png");
         addEntity(3,Steen.class, "afbeeldingen/steen.png");
         addEntity(4,BrekendPlatform.class,"afbeeldingen/steen.png");
-        addEntity(5, Schild.class,"afbeeldingen/schild1.png");
+        addEntity(5, Medkit.class,"afbeeldingen/schild1.png");
         addEntity(6, SnelheidBoost.class,"afbeeldingen/speedpotion.png");
         addEntity(7, StertkeBoost.class,"afbeeldingen/sterkte.png");
     }

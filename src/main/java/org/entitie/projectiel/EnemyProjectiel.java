@@ -7,6 +7,7 @@ import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.SceneBorderTouchingWatcher;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.scenes.SceneBorder;
+import org.entitie.vijand.Vijand;
 
 public class EnemyProjectiel extends DynamicSpriteEntity implements Collided, Collider, ProjectielCollision, SceneBorderTouchingWatcher {
     private  int sterkte;
@@ -18,9 +19,11 @@ public class EnemyProjectiel extends DynamicSpriteEntity implements Collided, Co
 
     @Override
     public void onCollision(Collider collider) {
-        if(collider instanceof ProjectielCollision enemyProjectiel){
-            enemyProjectiel.enemyProjectilCollision();
-            remove();
+        if((collider instanceof  Vijand) == false) {
+            if (collider instanceof ProjectielCollision enemyProjectiel) {
+                enemyProjectiel.enemyProjectilCollision();
+                remove();
+            }
         }
     }
 
