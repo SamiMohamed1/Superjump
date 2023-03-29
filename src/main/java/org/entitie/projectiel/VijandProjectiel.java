@@ -9,9 +9,9 @@ import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 import org.entitie.vijand.Vijand;
 
-public class EnemyProjectiel extends DynamicSpriteEntity implements Collided, Collider, SpelerProjectielCollision, SceneBorderTouchingWatcher {
+public class VijandProjectiel extends DynamicSpriteEntity implements Collided, Collider, SpelerProjectielCollision, SceneBorderTouchingWatcher {
     private  int sterkte;
-    public EnemyProjectiel(Coordinate2D initialLocation, int directie, int sterkte) {
+    public VijandProjectiel(Coordinate2D initialLocation, int directie, int sterkte) {
         super("afbeeldingen/vuurorb.png", initialLocation, new Size(50,50));
         setMotion(3,directie);
         this.sterkte = sterkte;
@@ -22,7 +22,7 @@ public class EnemyProjectiel extends DynamicSpriteEntity implements Collided, Co
         if(!(collider instanceof  Vijand)) {
             if (collider instanceof VijandProjectielCollision enemyProjectiel) {
                 enemyProjectiel.vijandProjectielCollision();
-                if(!(collider instanceof EnemyProjectiel)) {
+                if(!(collider instanceof VijandProjectiel)) {
                     remove();
                 }
             }
@@ -44,6 +44,6 @@ public class EnemyProjectiel extends DynamicSpriteEntity implements Collided, Co
 
     @Override
     public void spelerProjectilCollision(int spelersterkte) {
-
+    remove();
     }
 }

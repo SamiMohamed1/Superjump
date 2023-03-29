@@ -30,7 +30,7 @@ public class ProjectielSpawner extends EntitySpawner {
         if (type == "speler") {
             spawn(new SpelerProjectiel(new Coordinate2D(speler.getBoundingBox().getMinX(), speler.getBoundingBox().getMinY() ), (int) richting, speler.getSterkte()));
         } else if (type == "baas") {
-            spawn(new EnemyProjectiel(new Coordinate2D(baas.getBoundingBox().getCenterX(),baas.getBoundingBox().getCenterY()), randomRichting(),baas.getSterkte()));
+            spawn(new VijandProjectiel(new Coordinate2D(baas.getBoundingBox().getCenterX(),baas.getBoundingBox().getCenterY()), randomRichting(),baas.getSterkte()));
         }
     }
     public int randomRichting(){

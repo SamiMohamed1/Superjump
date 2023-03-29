@@ -41,6 +41,6 @@ public class SpelerProjectiel extends DynamicSpriteEntity implements Collided, C
 
     @Override
     public void vijandProjectielCollision() {
-
+    remove();
     }
 }

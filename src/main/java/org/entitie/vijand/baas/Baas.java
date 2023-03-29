@@ -46,11 +46,14 @@ public class Baas extends Vijand implements PlayerCollision, Collided, Collider 
 
 
 
-    @Override
-    public void vijandDoe() {
-    }
+
 
     public int getSterkte() {
         return sterkte;
+    }
+
+    @Override
+    public void vijandDoe() {
+
     }
 }
