@@ -49,10 +49,6 @@ public class VijandVolgend extends Vijand implements KeyListener, Collider, Upda
             if (richting.getBoundingBox().getMinX() < getBoundingBox().getMinX()) {
                 setMotion(3, 270);
             }
-            if (richting.getBoundingBox().getMinY() > getBoundingBox().getMinY()) {
-            }
-            if (richting.getBoundingBox().getMinY() > getBoundingBox().getMinY()) {
-            }
             spelerBeweegt = true;
         } else {
             spelerBeweegt = false;
@@ -77,7 +73,7 @@ public class VijandVolgend extends Vijand implements KeyListener, Collider, Upda
 
     @Override
     public void vijandDoe() {
-        if (spelerBeweegt == false) {
+        if (!spelerBeweegt) {
             if (getDirection() != 0.0) {
 
                 setMotion(1, getDirection());
