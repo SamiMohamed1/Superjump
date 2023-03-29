@@ -61,8 +61,8 @@ Map map = new Map();
     @Override
     public void setupEntitySpawners() {
 
-      addEntitySpawner(new ProjectielSpawner(0,0,180d,speler,baas,"speler"));
-      addEntitySpawner(new ProjectielSpawner(getWidth()/2,0,0,speler,baas,"baas"));
+      addEntitySpawner(new ProjectielSpawner(0,0,180d,speler,baas,"speler",200));
+      addEntitySpawner(new ProjectielSpawner(getWidth()/2,0,0,speler,baas,"baas",700));
 
     }
 
