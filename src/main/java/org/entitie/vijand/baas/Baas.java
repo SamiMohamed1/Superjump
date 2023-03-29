@@ -38,11 +38,9 @@ public class Baas extends Vijand implements PlayerCollision, Collided, Collider 
     @Override
     public void spelerProjectilCollision(int spelersterkte) {
         levens = levens - spelersterkte;
-        System.out.println("levens:" + levens);
-        System.out.println("sterkte:" + spelersterkte);
         if (levens <= 0) {
             remove();
-            superJumpGame.setActiveScene(4);
+            superJumpGame.setActiveScene(3);
         }
     }
 

@@ -22,15 +22,17 @@ public class SpelerProjectiel extends DynamicSpriteEntity implements Collided, C
 
     @Override
     public void onCollision(Collider collider) {
-        if (collider instanceof ProjectielCollision spelerProjectiel && !(collider instanceof Speler)){
-            spelerProjectiel.spelerProjectilCollision(sterkte);
-            remove();
+        if (collider instanceof ProjectielCollision spelerProjectiel && !(collider instanceof SpelerProjectiel)){
+            if(!(collider instanceof Speler)) {
+                spelerProjectiel.spelerProjectilCollision(sterkte);
+                remove();
+            }
         }
     }
 
     @Override
     public void spelerProjectilCollision(int spelersterkte) {
-        remove();
+
     }
 
     @Override
