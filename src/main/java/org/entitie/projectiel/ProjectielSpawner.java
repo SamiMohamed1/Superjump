@@ -15,8 +15,8 @@ public class ProjectielSpawner extends EntitySpawner {
     private double richting;
     private String type;
 
-    public ProjectielSpawner(double locatieX, double locatieY, double richting, Speler speler, Baas baas, String type) {
-        super(500);
+    public ProjectielSpawner(double locatieX, double locatieY, double richting, Speler speler, Baas baas, String type, int interval) {
+        super(interval);
         this.locatieX = locatieX;
         this.locatieY = locatieY;
         this.richting = richting;
@@ -28,7 +28,7 @@ public class ProjectielSpawner extends EntitySpawner {
     @Override
     public void spawnEntities() {
         if (type == "speler") {
-            spawn(new SpelerProjectiel(new Coordinate2D(speler.getBoundingBox().getMinX(), speler.getBoundingBox().getMinY()), (int) richting, speler.getSterkte()));
+            spawn(new SpelerProjectiel(new Coordinate2D(speler.getBoundingBox().getMinX(), speler.getBoundingBox().getMinY() ), (int) richting, speler.getSterkte()));
             System.out.println("spatie");
         } else if (type == "baas") {
             spawn(new EnemyProjectiel(new Coordinate2D(baas.getBoundingBox().getCenterX(),baas.getBoundingBox().getCenterY()), randomRichting(),speler.getSterkte()));

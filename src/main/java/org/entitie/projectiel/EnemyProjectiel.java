@@ -22,7 +22,9 @@ public class EnemyProjectiel extends DynamicSpriteEntity implements Collided, Co
         if((collider instanceof  Vijand) == false) {
             if (collider instanceof ProjectielCollision enemyProjectiel) {
                 enemyProjectiel.enemyProjectilCollision();
-                remove();
+                if((collider instanceof EnemyProjectiel) == false) {
+                    remove();
+                }
             }
         }
     }
